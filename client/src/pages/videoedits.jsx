@@ -21,62 +21,48 @@ export default function VideoEditing() {
     const mobileVideos = [
         {
             src: "https://altitudeimagingvideos.b-cdn.net/golfcourse.MP4",
-            title: "Altitude Imaging Ad",
         },
         {
             src: "https://altitudeimagingvideos.b-cdn.net/newporttower.MP4",
-            title: "Green Gator Pressure Washing Ad",
         },
         {
             src: "https://altitudeimagingvideos.b-cdn.net/treewatertower.MP4",
-            title: "RestorFX Services Ad",
         },
         {
             src: "https://altitudeimagingvideos.b-cdn.net/bleachersportrait.MP4",
-            title: "Audi Before and After",
         },
         {
             src: "https://altitudeimagingvideos.b-cdn.net/golfriver.MP4",
-            title: "Explorer Before and After",
         },
         {
             src: "https://altitudeimagingvideos.b-cdn.net/houses_.MP4",
-            title: "Jeep Wrangler Before and After",
         },
         {
             src: "https://altitudeimagingvideos.b-cdn.net/watertower.MP4",
-            title: "Jeep Wrangler Before and After",
         }
     ];
 
     const landscapeVideos = [
         {
             src: "https://altitudeimagingvideos.b-cdn.net/bleachers.MP4",
-            title: "Altitude Imaging Promo",
         },
         {
             src: "https://altitudeimagingvideos.b-cdn.net/footballfour.MP4",
-            title: "Altitude Imaging Promo",
         },
         {
             src: "https://altitudeimagingvideos.b-cdn.net/footballfield.MP4",
-            title: "Altitude Imaging Promo",
         },
         {
             src: "https://altitudeimagingvideos.b-cdn.net/bridgeone.MP4",
-            title: "Altitude Imaging Promo",
         },
         {
             src: "https://altitudeimagingvideos.b-cdn.net/bridgethree.MP4",
-            title: "Altitude Imaging Promo",
         },
         {
             src: "https://altitudeimagingvideos.b-cdn.net/bridgetwo.MP4",
-            title: "Altitude Imaging Promo",
         },
         {
             src: "https://jelliottvideos.b-cdn.net/altitudeadone.mp4",
-            title: "Altitude Imaging Promo",
         },
     ];
 
