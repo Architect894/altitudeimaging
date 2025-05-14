@@ -90,11 +90,10 @@
     box-shadow: 0 0 20px rgba(255, 255, 255, 0.2);
 }
 
-
 /* Mobile-specific overrides */
 @media (max-width: 768px) {
     .frostedGlass {
-        max-width: 95%;
+        max-width: 75%;
         padding: 1rem;
         background-color:  rgba(41, 63, 95, 0.61);
     }
