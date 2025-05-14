@@ -93,7 +93,7 @@
 /* Mobile-specific overrides */
 @media (max-width: 768px) {
     .frostedGlass {
-        max-width: 75%;
+        max-width: 82%;
         padding: 1rem;
         background-color:  rgba(41, 63, 95, 0.61);
     }
