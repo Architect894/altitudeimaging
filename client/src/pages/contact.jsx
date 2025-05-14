@@ -62,7 +62,7 @@ export default function Contact() {
                 {/* Frosted Glass Content Box */}
                 <div className={`container d-flex flex-column justify-content-center align-items-center mb-5 mt-5 ${styles.frostedGlass}`}>
                     <h2 className="display-3 mb-3">Get in Touch</h2>
-                    <p className="lead" style={{ fontSize: "1.65rem" }}>
+                    <p className="lead" style={{ fontSize: "1.40rem" }}>
                         I&apos;d love to hear from you! Whether it&apos;s a project, a question, or just a hello.
                     </p>
                     <p className="text-light mb-4" style={{ fontSize: "1.50rem" }}>Email me directly at:</p>
@@ -70,7 +70,7 @@ export default function Contact() {
                         <a
                             href="mailto:jarredelliott@icloud.com"
                             className="text-info fw-bold"
-                            style={{ fontSize: "1.50rem" }}
+                            style={{ fontSize: "1.20rem" }}
                         >
                             jarred@altitudeimaging.org
                         </a>
