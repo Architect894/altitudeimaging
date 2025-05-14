@@ -44,7 +44,7 @@ export default function DropMenu() {
                         />
                     </Link>
                     <Link href="/videoedits" className="button-container py-1 px-3">
-                        Portfolio
+                        Content
                     </Link>
                     <Link
                         href="/contact"
@@ -92,7 +92,7 @@ export default function DropMenu() {
                         />
                     </Link>
                     <Link href="/videoedits" className="button-container py-1 px-3 text-white hover:text-yellow-400">
-                        Portfolio
+                        Content
                     </Link>
                     <Link
                         href="/contact"
