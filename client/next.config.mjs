@@ -1,5 +1,8 @@
 /** @type {import('next').NextConfig} */
 const nextConfig = {
+    experimental: {
+        appDir: true,
+    },
     webpack: (config, { buildId, dev, isServer, defaultLoaders, webpack }) => {
         config.module.rules.push({
             test: /\.svg$/,
@@ -7,11 +10,11 @@ const nextConfig = {
                 {
                     loader: 'url-loader',
                     options: {
-                        limit: 8192, // Adjust this value if you want to inline SVGs below a certain size
+                        limit: 8192,
                         name: '[name].[ext]'
                     }
                 },
-                'svgo-loader' // Optional if you want to optimize SVGs
+                'svgo-loader'
             ]
         });
         return config
