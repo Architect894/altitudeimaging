@@ -61,20 +61,20 @@
 }
 
 .frostedGlass {
-    background: rgba(151, 100, 52, 0.233);
+    background: rgba(41, 63, 95, 0.61);
     backdrop-filter: blur(10px);
-    -webkit-backdrop-filter: blur(5px);
+    -webkit-backdrop-filter: blur(50);
     border-radius: 20px;
-    box-shadow: 0 8px 32px 0 rgb(255, 191, 132);
+    box-shadow: 0 8px 32px 0 rgb(132, 200, 255);
     padding: 2rem;
-    max-width: 700px;
+    max-width: 1000px;
     margin: 0 auto;
     transition: transform 0.3s ease, box-shadow 0.3s ease, border 0.3s ease;
 }
 
 .frostedGlass:hover {
     transform: scale(1.03);
-    box-shadow: 0 12px 45px rgba(255, 169, 56, 0.514);
+    box-shadow: 0 12px 45px rgba(0, 72, 167, 0.514);
     border: 1px solid rgba(255, 255, 255, 0.25);
 }
 

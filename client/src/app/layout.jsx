@@ -5,8 +5,8 @@ import DropMenu from "@/components/dropMenu";
 import Footer from "@/components/footer";
 
 export const metadata = {
-  title: "Jacob Elliott",
-  description: "My portfolio site",
+  title: "Altitude Imaging",
+  description: "Altitude Imaging - Elevate Your Visual Experience",
 };
 
 export default function RootLayout({ children }) {

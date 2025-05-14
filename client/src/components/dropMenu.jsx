@@ -24,7 +24,7 @@ export default function DropMenu() {
                 position: "sticky",
                 top: "0",
                 zIndex: "50",
-                backgroundColor: "rgba(0, 0, 0, 0.8)",
+                backgroundColor: "rgba(75, 94, 201, 0.23)",
                 backdropFilter: "blur(5px)",
                 boxShadow: "0 4px 10px rgba(0, 0, 0, 0.5)",
                 padding: "10px 20px",
@@ -38,17 +38,13 @@ export default function DropMenu() {
                 <div className="hidden lg:flex w-full justify-center items-center space-x-6">
                     <Link href="/" className="button-container py-1 px-3 text-white hover:text-yellow-400">
                         <img
-                            src="/homeje.png"
+                            src="/altitudehome.png"
                             alt="Home"
-                            style={{ height: "100px", width: "auto" }}
+                            style={{ height: "110px", width: "auto" }}
                         />
                     </Link>
-
-                    <Link href="/projects" className="button-container py-1 px-3">
-                        Projects
-                    </Link>
                     <Link href="/videoedits" className="button-container py-1 px-3">
-                        Video Editing
+                        Portfolio
                     </Link>
                     <Link
                         href="/contact"
@@ -87,19 +83,16 @@ export default function DropMenu() {
 
             {/* Mobile Navigation Menu */}
             {isMenuOpen && (
-                <div className="lg:hidden bg-gray-800 text-white py-6 px-4 flex flex-col items-center text-center space-y-4 animate-dropdown">
+                <div className="lg:hidden bg-blue-1000 text-white py-6 px-4 flex flex-col items-center text-center space-y-4 animate-dropdown">
                     <Link href="/" className="button-container py-1 px-3 text-white hover:text-yellow-400">
                         <img
-                            src="/homeje.png"
+                            src="/altitudehome.png"
                             alt="Home"
                             style={{ height: "100px", width: "auto" }}
                         />
                     </Link>
-                    <Link href="/projects" className="button-container py-1 px-3 text-white hover:text-yellow-400">
-                        Projects
-                    </Link>
                     <Link href="/videoedits" className="button-container py-1 px-3 text-white hover:text-yellow-400">
-                        Video Editing
+                        Portfolio
                     </Link>
                     <Link
                         href="/contact"

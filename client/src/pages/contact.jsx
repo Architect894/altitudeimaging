@@ -55,7 +55,7 @@ export default function Contact() {
                     playsInline
                     className={styles.videoBackground}
                 >
-                    <source src="https://jelliottvideos.b-cdn.net/blackngoldsquare.mp4" type="video/mp4" />
+                    <source src="https://altitudeimagingvideos.b-cdn.net/newport%20city%20rando.mp4" type="video/mp4" />
                     Your browser does not support the video tag.
                 </video>
 
@@ -68,11 +68,11 @@ export default function Contact() {
                     <p className="text-light mb-4" style={{ fontSize: "1.50rem" }}>Email me directly at:</p>
                     <p>
                         <a
-                            href="mailto:sendittojelliott@gmail.com"
+                            href="mailto:jarredelliott@icloud.com"
                             className="text-info fw-bold"
                             style={{ fontSize: "1.50rem" }}
                         >
-                            sendittojelliott@gmail.com
+                            jarred@altitudeimaging.org
                         </a>
                     </p>
 
@@ -80,10 +80,8 @@ export default function Contact() {
                     <p className="text-light mt-4 mb-2" style={{ fontSize: "1.5rem" }}>Connect with me:</p>
                     <div className="d-flex justify-content-center gap-4">
                         {[
-                            { href: "https://github.com/Architect894", icon: "github" },
-                            { href: "https://linkedin.com/in/architect894", icon: "linkedin" },
-                            { href: "https://facebook.com/jacob.a.elliott/", icon: "facebook" },
-                            { href: "https://instagram.com/jelliott_tv/", icon: "instagram" },
+                            { href: "https://facebook.com/altitudeimagingofficial/", icon: "facebook" },
+                            { href: "https://instagram.com/altitudeimagingofficial/", icon: "instagram" },
                         ].map((social, i) => (
                             <a
                                 key={i}

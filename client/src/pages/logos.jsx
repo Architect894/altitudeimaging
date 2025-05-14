@@ -2,7 +2,7 @@
 export default function Head() {
     return (
         <>
-            <title>Jacob Elliott Dev</title>
+            <title>Altitude Imaging</title>
             <meta name="description" content="Portfolio of Jacob Elliott - Software Developer and Creative Editor" />
             <link
                 rel="stylesheet"
