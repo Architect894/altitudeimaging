@@ -69,7 +69,7 @@ export default function Home() {
                     <div className="d-flex justify-content-center gap-3 mb-4">
                         <Link
                             href="/videoedits"
-                            className="btn btn-outline-light text-5xl px-14 py-6 rounded-lg shadow-lg hover:scale-105 transition-all"
+                            className="btn btn-outline-light text-3xl px-9 py-6 rounded-lg shadow-lg hover:scale-105 transition-all"
                         >
                             View Content
                         </Link>
