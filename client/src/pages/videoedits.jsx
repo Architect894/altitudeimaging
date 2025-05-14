@@ -20,40 +20,64 @@ export default function VideoEditing() {
 
     const mobileVideos = [
         {
-            src: "https://jelliottvideos.b-cdn.net/altitudeadmob.mp4",
+            src: "https://altitudeimagingvideos.b-cdn.net/golfcourse.MP4",
             title: "Altitude Imaging Ad",
         },
         {
-            src: "https://jelliottvideos.b-cdn.net/GreenGatorAd1.mp4",
+            src: "https://altitudeimagingvideos.b-cdn.net/newporttower.MP4",
             title: "Green Gator Pressure Washing Ad",
         },
         {
-            src: "https://jelliottvideos.b-cdn.net/ravaiad.mp4",
+            src: "https://altitudeimagingvideos.b-cdn.net/treewatertower.MP4",
             title: "RestorFX Services Ad",
         },
         {
-            src: "https://jelliottvideos.b-cdn.net/audibanda.mp4",
+            src: "https://altitudeimagingvideos.b-cdn.net/bleachersportrait.MP4",
             title: "Audi Before and After",
         },
         {
-            src: "https://jelliottvideos.b-cdn.net/explorerbanda.mp4",
+            src: "https://altitudeimagingvideos.b-cdn.net/golfriver.MP4",
             title: "Explorer Before and After",
         },
         {
-            src: "https://jelliottvideos.b-cdn.net/wranglerbanda.mp4",
+            src: "https://altitudeimagingvideos.b-cdn.net/houses_.MP4",
+            title: "Jeep Wrangler Before and After",
+        },
+        {
+            src: "https://altitudeimagingvideos.b-cdn.net/watertower.MP4",
             title: "Jeep Wrangler Before and After",
         }
     ];
 
     const landscapeVideos = [
         {
-            src: "https://res.cloudinary.com/dzcsyysgp/video/upload/v1744694458/AltitudeAd1_fbppcz.mp4",
+            src: "https://altitudeimagingvideos.b-cdn.net/bleachers.MP4",
             title: "Altitude Imaging Promo",
         },
         {
-            src: "https://res.cloudinary.com/dzcsyysgp/video/upload/v1744694456/AltitudeAd2_xsxcp8.mp4",
+            src: "https://altitudeimagingvideos.b-cdn.net/footballfour.MP4",
             title: "Altitude Imaging Promo",
-        }
+        },
+        {
+            src: "https://altitudeimagingvideos.b-cdn.net/footballfield.MP4",
+            title: "Altitude Imaging Promo",
+        },
+        {
+            src: "https://altitudeimagingvideos.b-cdn.net/bridgeone.MP4",
+            title: "Altitude Imaging Promo",
+        },
+        {
+            src: "https://altitudeimagingvideos.b-cdn.net/bridgethree.MP4",
+            title: "Altitude Imaging Promo",
+        },
+        {
+            src: "https://altitudeimagingvideos.b-cdn.net/bridgetwo.MP4",
+            title: "Altitude Imaging Promo",
+        },
+        {
+            src: "https://jelliottvideos.b-cdn.net/altitudeadone.mp4",
+            title: "Altitude Imaging Promo",
+        },
     ];
 
     return (
@@ -70,8 +94,7 @@ export default function VideoEditing() {
             >
                 <div className="container mb-5">
                     <h2 className="display-4 mb-3">Portrait Video Projects</h2>
-                    <p className="lead">Want to showcase your business in action? I create engaging, high-quality video edits using CapCut, DaVinci Resolve, and Adobe Premiere—perfect for before-and-after
-                        transformations, promos, and small business ads that connect with your audience.</p>
+                    <p className="lead">Want to elevate your brand&apos;s story? We specialize in eye-catching portrait videos designed to showcase your small business, community, or special project from a whole new perspective.</p>
                 </div>
 
                 <div
@@ -122,8 +145,9 @@ export default function VideoEditing() {
             <section className="text-white py-5" style={{ fontFamily: "Quicksand" }}>
                 <div className="container mb-5 text-center">
                     <h3 className="display-5 mb-3">Landscape Video Projects</h3>
-                    <p className="lead">Crafted for a cinematic touch, these landscape videos are designed to showcase your business in a bold, professional
-                        light—perfect for connecting with audiences who want to see the full story behind your brand.</p>
+                    <p className="lead">Looking to make a big-screen impact?
+At Altitude Imaging, we produce stunning landscape videos ideal for websites, presentations, and advertising displays. Whether you&apos;re highlighting your business, community, or a special project,
+our aerial footage and expert editing bring your story to life in a wide, cinematic format that leaves a lasting impression.</p>
                 </div>
 
                 <div className="container">

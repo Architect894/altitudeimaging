@@ -50,34 +50,37 @@ export default function Home() {
                     playsInline
                     className={styles.videoBackground}
                 >
-                    <source src="https://jelliottvideos.b-cdn.net/goldnblackz.mp4" type="video/mp4" />
+                    <source src="https://jelliottvideos.b-cdn.net/altimagingvid.mp4" type="video/mp4" />
                     Your browser does not support the video tag.
                 </video>
 
                 {/* Overlay content */}
                 <div className={`text-center position-relative ${styles.frostedGlass}`} style={{ zIndex: 2 }}>
-                    <h1 className="display-3 mb-4">Hey, I&apos;m Jacob</h1>
-                    <p className="lead mb-5">
-                        Feel free to have a look around, welcome to my portfolio!<br />
-                        I am a software engineer with a passion for video editing and technology.
+                    <h1 className="display-3 mb-4">See More. Know More. Do More.</h1>
+                    <p className="lead mb-5 text-xl md:text-2xl lg:text-5xl">
+                        <br />We are Altitude Imaging
+                    </p>
+                    <p className="lead mb-5 text-xl md:text-2xl lg:text-3xl">
+                        We&apos;re dedicated to helping businesses, communities, and creators stand out with 
+                        professional drone media and marketing solutions.
+                        From breathtaking aerial footage to event coverage and 
+                        strategic social media content, we bring your vision to life with high-quality production that makes an impact from every angle.
                     </p>
                     <div className="d-flex justify-content-center gap-3 mb-4">
-                        <Link href="/projects" className="btn btn-outline-light btn-lg">
-                            View Projects
-                        </Link>
-                        <Link href="/videoedits" className="btn btn-outline-light btn-lg">
-                            View Video Edits
+                        <Link
+                            href="/videoedits"
+                            className="btn btn-outline-light text-5xl px-14 py-6 rounded-lg shadow-lg hover:scale-105 transition-all"
+                        >
+                            View Content
                         </Link>
                     </div>
 
                     {/* Social Media Icons placed here */}
-                    <p className="text-light mb-3" style={{ fontSize: "1.5rem" }}>Connect with me:</p>
+                    <p className="text-light mb-3" style={{ fontSize: "1.5rem" }}>Visit our socials!</p>
                     <div className="d-flex justify-content-center gap-4">
                         {[
-                            { href: "https://github.com/Architect894", icon: "github" },
-                            { href: "https://linkedin.com/in/architect894", icon: "linkedin" },
-                            { href: "https://facebook.com/jacob.a.elliott/", icon: "facebook" },
-                            { href: "https://instagram.com/jelliott_tv/", icon: "instagram" },
+                            { href: "https://www.facebook.com/altitudeimagingofficial/", icon: "facebook" },
+                            { href: "https://www.instagram.com/altitudeimagingofficial/", icon: "instagram" },
                         ].map((social, i) => (
                             <a
                                 key={i}
