@@ -1,8 +1,6 @@
 /** @type {import('next').NextConfig} */
 const nextConfig = {
-    experimental: {
-        appDir: true,
-    },
+    // ✅ Removed invalid experimental.appDir
     webpack: (config, { buildId, dev, isServer, defaultLoaders, webpack }) => {
         config.module.rules.push({
             test: /\.svg$/,
@@ -17,7 +15,7 @@ const nextConfig = {
                 'svgo-loader'
             ]
         });
-        return config
+        return config;
     },
 };
 
