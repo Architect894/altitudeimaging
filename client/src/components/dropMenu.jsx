@@ -7,14 +7,17 @@ import "../styles/styles.module.css";
 
 export default function DropMenu() {
     const [isMenuOpen, setIsMenuOpen] = useState(false);
-    const [isDropdownOpen, setIsDropdownOpen] = useState(false);
 
     const toggleMobileMenu = () => {
         setIsMenuOpen(!isMenuOpen);
     };
 
-    const toggleDropdown = () => {
-        setIsDropdownOpen(!isDropdownOpen);
+    const handleBookNowClick = () => {
+        window.open(
+            "https://altitudeimaging.hbportal.co/public/682a5bb52c86d7002408cd0f",
+            "_blank",
+            "noopener,noreferrer"
+        );
     };
 
     return (
@@ -46,14 +49,17 @@ export default function DropMenu() {
                     <Link href="/videoedits" className="button-container py-1 px-3">
                         Content
                     </Link>
-                    <Link
-                        href="/contact"
-                        className="button-container py-1 px-3"
-                    >
+                    <Link href="/contact" className="button-container py-1 px-3">
                         Get In Touch
                     </Link>
+                    {/* ✅ Book Now Button - Desktop */}
+                    <button
+                        onClick={handleBookNowClick}
+                        className="button-container py-1 px-4"
+                    >
+                        Book Now
+                    </button>
                 </div>
-
 
                 {/* Mobile Menu Toggle Button */}
                 <div className="flex lg:hidden w-full justify-center">
@@ -94,12 +100,16 @@ export default function DropMenu() {
                     <Link href="/videoedits" className="button-container py-1 px-3 text-white hover:text-yellow-400">
                         Content
                     </Link>
-                    <Link
-                        href="/contact"
-                        className="button-container py-1 px-3 text-white hover:text-yellow-400"
-                    >
+                    <Link href="/contact" className="button-container py-1 px-3 text-white hover:text-yellow-400">
                         Get In Touch →
                     </Link>
+                    {/* ✅ Book Now Button - Mobile */}
+                    <button
+                        onClick={handleBookNowClick}
+                        className="button-container py-2 px-4 text-white"
+                    >
+                        Book Now
+                    </button>
                 </div>
             )}
         </header>
