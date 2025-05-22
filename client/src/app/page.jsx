@@ -7,7 +7,7 @@ import Link from "next/link";
 import Connections from "@/components/connections";
 
 export default function Home() {
-    const [scrollY, setScrollY] = useState(0); // Track the scroll position
+    const [scrollY, setScrollY] = useState(0);
 
     useEffect(() => {
         const handleScroll = () => {
@@ -15,34 +15,28 @@ export default function Home() {
         };
 
         window.addEventListener("scroll", handleScroll);
-
-        return () => {
-            window.removeEventListener("scroll", handleScroll);
-        };
+        return () => window.removeEventListener("scroll", handleScroll);
     }, []);
 
-    // Calculate gradient stops based on scroll position
     const getGradientPosition = () => {
         const scrollFactor = Math.min(scrollY / (document.body.scrollHeight - window.innerHeight), 1);
-        const purpleStop = Math.max(30 - scrollFactor * 30, 0); // Purple dominates the top
-        const cyanStop = Math.min(40 + scrollFactor * 40, 100); // Cyan appears earlier
+        const purpleStop = Math.max(30 - scrollFactor * 30, 0);
+        const cyanStop = Math.min(40 + scrollFactor * 40, 100);
         return `linear-gradient(to bottom, hsl(280, 100%, 50%) ${purpleStop}%, hsl(180, 100%, 50%) ${cyanStop}%)`;
     };
 
     return (
         <section id="home">
-            {/* Header Section */}
             <header
                 className="position-relative d-flex align-items-center justify-content-center"
                 style={{
-                    background: "rgba(0, 0, 0, 0.8)", // Keep a dark overlay for readability
+                    background: "rgba(0, 0, 0, 0.8)",
                     height: "100vh",
                     color: "#fff",
                     zIndex: 10,
                     overflow: "hidden",
                 }}
             >
-                {/* Background Video */}
                 <video
                     autoPlay
                     loop
@@ -54,7 +48,6 @@ export default function Home() {
                     Your browser does not support the video tag.
                 </video>
 
-                {/* Overlay content */}
                 <div className={`text-center position-relative ${styles.frostedGlass}`} style={{ zIndex: 2 }}>
                     <h1 className="display-3 mb-4">See More. Know More. Do More.</h1>
                     <p className="lead mb-5 text-xl md:text-2xl lg:text-5xl">
@@ -66,7 +59,24 @@ export default function Home() {
                         From breathtaking aerial footage to event coverage and 
                         strategic social media content, we bring your vision to life with high-quality production that makes an impact from every angle.
                     </p>
+                    
                     <div className="d-flex justify-content-center gap-3 mb-4">
+                        <button
+                            onClick={() =>
+                                window.open(
+                                    "https://altitudeimaging.hbportal.co/public/682a5bb52c86d7002408cd0f",
+                                    "_blank",
+                                    "noopener,noreferrer"
+                                )
+                            }
+                            className="btn btn-outline-light text-3xl px-9 py-6 rounded-lg shadow-lg hover:scale-105 transition-all"
+                        >
+                            Book Now
+                        </button>
+                    </div>
+
+                    {/* View Content Button */}
+                    <div className="d-flex justify-content-center gap-3 mb-3">
                         <Link
                             href="/videoedits"
                             className="btn btn-outline-light text-3xl px-9 py-6 rounded-lg shadow-lg hover:scale-105 transition-all"
@@ -75,7 +85,9 @@ export default function Home() {
                         </Link>
                     </div>
 
-                    {/* Social Media Icons placed here */}
+                    {/* ✅ Book Now Button */}
+
+                    {/* Social Media Icons */}
                     <p className="text-light mb-3" style={{ fontSize: "1.5rem" }}>Visit our socials!</p>
                     <div className="d-flex justify-content-center gap-4">
                         {[
@@ -101,8 +113,6 @@ export default function Home() {
                     </div>
                 </div>
             </header>
-
-
         </section>
     );
 }

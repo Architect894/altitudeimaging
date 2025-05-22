@@ -1,5 +1,5 @@
 "use client";
-import React, { useState } from "react";
+import React from "react";
 import "bootstrap/dist/css/bootstrap.min.css";
 import styles from "../styles/styles.module.css";
 import "../styles/global.css";
@@ -7,26 +7,6 @@ import PagesLayout from './pageslayout';
 import Head from './logos';
 
 export default function Contact() {
-    const [formData, setFormData] = useState({
-        name: "",
-        email: "",
-        message: "",
-    });
-
-    const handleChange = (e) => {
-        setFormData({
-            ...formData,
-            [e.target.name]: e.target.value,
-        });
-    };
-
-    const handleSubmit = (e) => {
-        e.preventDefault();
-
-        const { name, email, message } = formData;
-        window.location.href = `mailto:architect894@gmail.com?subject=Message from ${name}&body=From: ${name} (${email})%0D%0A%0D%0A${message}`;
-    };
-
     return (
         <PagesLayout>
             <Head>
@@ -35,6 +15,7 @@ export default function Contact() {
                     href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.10.5/font/bootstrap-icons.css"
                 />
             </Head>
+
             <section
                 id="contact"
                 className="text-white py-5 text-center position-relative"
@@ -42,7 +23,7 @@ export default function Contact() {
                     marginTop: "0%",
                     fontFamily: "Quicksand",
                     zIndex: 0,
-                    background: "rgba(0, 0, 0, 0.8)", // Keep a dark overlay for readability
+                    background: "rgba(0, 0, 0, 0.8)",
                     height: "100vh",
                     overflow: "hidden",
                 }}
@@ -62,23 +43,25 @@ export default function Contact() {
                 {/* Frosted Glass Content Box */}
                 <div className={`container d-flex flex-column justify-content-center align-items-center mb-5 mt-5 ${styles.frostedGlass}`}>
                     <h2 className="display-3 mb-3">Get in Touch</h2>
-                    <p className="lead" style={{ fontSize: "1.40rem" }}>
-                        I&apos;d love to hear from you! Whether it&apos;s a project, a question, or just a hello.
+                    <p className="lead" style={{ fontSize: "1.4rem" }}>
+                        We'd love to hear from you—whether it's a project, a question, or just a hello.
                     </p>
-                    <p className="text-light mb-4" style={{ fontSize: "1.50rem" }}>Email me directly at:</p>
+                    <p className="text-light mb-4" style={{ fontSize: "1.5rem" }}>
+                        Email us directly at:
+                    </p>
                     <p>
                         <a
                             href="mailto:jarredelliott@icloud.com"
                             className="text-info fw-bold"
-                            style={{ fontSize: "1.20rem" }}
+                            style={{ fontSize: "1.2rem" }}
                         >
                             jarred@altitudeimaging.org
                         </a>
                     </p>
 
                     {/* Social Icons */}
-                    <p className="text-light mt-4 mb-2" style={{ fontSize: "1.5rem" }}>Connect with me:</p>
-                    <div className="d-flex justify-content-center gap-4">
+                    <p className="text-light mt-4 mb-2" style={{ fontSize: "1.5rem" }}>Connect with us:</p>
+                    <div className="d-flex justify-content-center gap-4 mb-4">
                         {[
                             { href: "https://facebook.com/altitudeimagingofficial/", icon: "facebook" },
                             { href: "https://instagram.com/altitudeimagingofficial/", icon: "instagram" },
@@ -90,17 +73,29 @@ export default function Contact() {
                                 rel="noopener noreferrer"
                                 className="text-white"
                                 style={{
-                                    fontSize: "2.0rem",
+                                    fontSize: "2rem",
                                     transition: "transform 0.2s ease-in-out",
                                     margin: "0 20px",
                                 }}
                                 onMouseEnter={(e) => (e.currentTarget.style.transform = "scale(1.2)")}
-                                onMouseLeave={(e) => (e.currentTarget.style.transform = "scale(1)")}
-                            >
+                                onMouseLeave={(e) => (e.currentTarget.style.transform = "scale(1)")}>
                                 <i className={`bi bi-${social.icon}`}></i>
                             </a>
                         ))}
                     </div>
+
+                    {/* ✅ HoneyBook Booking Link Opens in New Tab */}
+                    <button
+                        className="btn btn-primary px-5 py-3 fs-2 mt-3"
+                        onClick={() => window.open(
+                            'https://altitudeimaging.hbportal.co/public/682a5bb52c86d7002408cd0f',
+                            '_blank',
+                            'noopener,noreferrer'
+                        )}
+                    >
+                        Book Now!
+                    </button>
+
                 </div>
             </section>
         </PagesLayout>

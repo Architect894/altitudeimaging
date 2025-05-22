@@ -1,9 +1,18 @@
+"use client";
 import React from "react";
 import "bootstrap/dist/css/bootstrap.min.css";
 import "../styles/global.css";
 import styles from "../styles/styles.module.css";
 
 export default function ContactUs() {
+    const handleBookNowClick = () => {
+        window.open(
+            "https://altitudeimaging.hbportal.co/public/682a5bb52c86d7002408cd0f",
+            "_blank",
+            "noopener,noreferrer"
+        );
+    };
+
     return (
         <div className="bg-gray-900 py-24 sm:py-32">
             <div className="mx-auto max-w-4xl px-6 lg:max-w-6xl lg:px-8 text-center">
@@ -13,8 +22,8 @@ export default function ContactUs() {
 
                 {/* Centered Card Grid */}
                 <div className="mt-16 grid gap-10 lg:grid-cols-2 justify-items-center">
-                    
-                    {/* Card 1: Software Solutions */}
+
+                    {/* Card 1: Aerial Media */}
                     <div className="flex flex-col w-full max-w-xl hover:scale-105 hover:shadow-lg transition duration-200">
                         <div className="overflow-hidden rounded-lg bg-gray-900 ring-1 ring-white/15">
                             <video
@@ -31,15 +40,21 @@ export default function ContactUs() {
                                     Elevate Your Brand
                                 </p>
                                 <p className="mt-2 text-sm text-white">
-                                    Need professional drone footage that delivers real results?
-                                    Whether it&apos;s social media content, community highlights, or full-scale commercial ads, Altitude Imaging captures and 
-                                    produces stunning aerial videos tailored to your unique vision—using the latest drone technology and professional editing to make your message stand out.
+                                    Need professional drone footage that delivers real results? Whether it&apos;s social media content, community highlights, or full-scale commercial ads, Altitude Imaging captures and produces stunning aerial videos tailored to your unique vision—using the latest drone technology and professional editing to make your message stand out.
                                 </p>
+                                <div className="mt-4 text-center">
+                                    <button
+                                        onClick={handleBookNowClick}
+                                        className="btn btn-primary px-4 py-2 mt-3 text-white rounded-lg shadow hover:scale-105 transition-all"
+                                    >
+                                        Book Now
+                                    </button>
+                                </div>
                             </div>
                         </div>
                     </div>
 
-                    {/* Card 2: Collaboration */}
+                    {/* Card 2: Events */}
                     <div className="flex flex-col w-full max-w-xl hover:scale-105 hover:shadow-lg transition duration-200">
                         <div className="overflow-hidden rounded-lg bg-gray-800 ring-1 ring-white/15">
                             <video
@@ -56,14 +71,21 @@ export default function ContactUs() {
                                     Turn your next event into unforgettable content.
                                 </p>
                                 <p className="mt-2 text-sm text-white">
-                                    From festivals and grand openings to community gatherings and corporate events, Altitude Imaging captures every moment from breathtaking aerial angles. Our professional 
-                                    event coverage helps you relive the energy, showcase attendance, and promote future events with stunning highlight reels and promotional videos.
+                                    From festivals and grand openings to community gatherings and corporate events, Altitude Imaging captures every moment from breathtaking aerial angles. Our professional event coverage helps you relive the energy, showcase attendance, and promote future events with stunning highlight reels and promotional videos.
                                 </p>
+                                <div className="mt-4 text-center">
+                                    <button
+                                        onClick={handleBookNowClick}
+                                        className="btn btn-primary px-4 py-2 mt-3 text-white rounded-lg shadow hover:scale-105 transition-all"
+                                    >
+                                        Book Now
+                                    </button>
+                                </div>
                             </div>
                         </div>
                     </div>
 
-                    {/* Card 2: Collaboration */}
+                    {/* Card 3: Business Marketing */}
                     <div className="flex flex-col w-full max-w-xl hover:scale-105 hover:shadow-lg transition duration-200">
                         <div className="overflow-hidden rounded-lg bg-gray-800 ring-1 ring-white/15">
                             <video
@@ -80,14 +102,21 @@ export default function ContactUs() {
                                     Showcase your business like never before.
                                 </p>
                                 <p className="mt-2 text-sm text-white">
-                                    We help businesses of all sizes stand out with cinematic aerial content perfect for websites, social media, and digital ads. 
-                                    Whether you&apos;re promoting your services, showing off your location, or creating a brand story, our professional 
-                                    drone videos help you capture attention and turn viewers into customers.
+                                    We help businesses of all sizes stand out with cinematic aerial content perfect for websites, social media, and digital ads. Whether you&apos;re promoting your services, showing off your location, or creating a brand story, our professional drone videos help you capture attention and turn viewers into customers.
                                 </p>
+                                <div className="mt-4 text-center">
+                                    <button
+                                        onClick={handleBookNowClick}
+                                        className="btn btn-primary px-4 py-2 mt-3 text-white rounded-lg shadow hover:scale-105 transition-all"
+                                    >
+                                        Book Now
+                                    </button>
+                                </div>
                             </div>
                         </div>
                     </div>
-                    {/* Card 2: Collaboration */}
+
+                    {/* Card 4: Social Media Management */}
                     <div className="flex flex-col w-full max-w-xl hover:scale-105 hover:shadow-lg transition duration-200">
                         <div className="overflow-hidden rounded-lg bg-gray-800 ring-1 ring-white/15">
                             <video
@@ -104,10 +133,16 @@ export default function ContactUs() {
                                     Let your content work for you.
                                 </p>
                                 <p className="mt-2 text-sm text-white">
-                                    We don&apos;t just create stunning videos—we help you share them with the right audience. Altitude Imaging offers 
-                                    social media management services to keep your business active online with consistent posting, audience engagement, and strategy-driven content 
-                                    that boosts your reach and grows your brand across platforms like Facebook, Instagram, TikTok, and YouTube.
+                                    We don&apos;t just create stunning videos—we help you share them with the right audience. Altitude Imaging offers social media management services to keep your business active online with consistent posting, audience engagement, and strategy-driven content that boosts your reach and grows your brand across platforms like Facebook, Instagram, TikTok, and YouTube.
                                 </p>
+                                <div className="mt-4 text-center">
+                                    <button
+                                        onClick={handleBookNowClick}
+                                        className="btn btn-primary px-4 py-2 mt-3 text-white rounded-lg shadow hover:scale-105 transition-all"
+                                    >
+                                        Book Now
+                                    </button>
+                                </div>
                             </div>
                         </div>
                     </div>
