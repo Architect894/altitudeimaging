@@ -2,6 +2,7 @@
 
 import React, { useState } from "react";
 import Link from "next/link";
+import Image from "next/image"; // ✅ Imported Next.js Image component
 import "../styles/global.css";
 import "../styles/styles.module.css";
 
@@ -40,10 +41,12 @@ export default function DropMenu() {
                 {/* Desktop Navigation Links */}
                 <div className="hidden lg:flex w-full justify-center items-center space-x-6">
                     <Link href="/" className="button-container py-1 px-3 text-white hover:text-yellow-400">
-                        <img
+                        <Image
                             src="/altitudehome.png"
                             alt="Home"
-                            style={{ height: "110px", width: "auto" }}
+                            width={110}
+                            height={110}
+                            style={{ width: "auto", height: "110px" }}
                         />
                     </Link>
                     <Link href="/videoedits" className="button-container py-1 px-3">
@@ -91,10 +94,12 @@ export default function DropMenu() {
             {isMenuOpen && (
                 <div className="lg:hidden bg-blue-1000 text-white py-6 px-4 flex flex-col items-center text-center space-y-4 animate-dropdown">
                     <Link href="/" className="button-container py-1 px-3 text-white hover:text-yellow-400">
-                        <img
+                        <Image
                             src="/altitudehome.png"
                             alt="Home"
-                            style={{ height: "100px", width: "auto" }}
+                            width={100}
+                            height={100}
+                            style={{ width: "auto", height: "100px" }}
                         />
                     </Link>
                     <Link href="/videoedits" className="button-container py-1 px-3 text-white hover:text-yellow-400">
