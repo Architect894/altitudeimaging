@@ -49,7 +49,7 @@ export default function Home() {
                 </video>
 
                 <div className={`text-center position-relative ${styles.frostedGlass}`} style={{ zIndex: 2 }}>
-                    <h1 className="display-3 mb-4">See More. Know More. Do More.</h1>
+                    <h1 className="display-4">See More. Know More. Do More.</h1>
                     <p className="lead mb-5 text-xl md:text-2xl lg:text-5xl">
                         <br />We are Altitude Imaging
                     </p>
@@ -71,7 +71,7 @@ export default function Home() {
                             }
                             className="btn btn-outline-light text-3xl px-9 py-6 rounded-lg shadow-lg hover:scale-105 transition-all"
                         >
-                            Book Now
+                            Book Your Event
                         </button>
                     </div>
 

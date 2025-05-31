@@ -60,12 +60,26 @@ export default function DropMenu() {
                         onClick={handleBookNowClick}
                         className="button-container py-1 px-4"
                     >
-                        Book Now
+                        Book Your Event
                     </button>
                 </div>
 
                 {/* Mobile Menu Toggle Button */}
-                <div className="flex lg:hidden w-full justify-center">
+                {/* Mobile Navigation Bar (Closed State) */}
+                <div className="flex lg:hidden w-full items-center justify-between px-2 py-1 h-[84px]">
+                    {/* Logo on the Left */}
+                    <Link href="/">
+                        <Image
+                            src="/altitudehome.png"
+                            alt="Home"
+                        width={120}
+                        height={60}
+                        style={{ width: "auto", height: "200px" }}
+                        className="h-10 w-auto transition-transform duration-300 ease-in-out hover:scale-105"
+                        />
+                    </Link>
+
+                    {/* Hamburger Menu Button on the Right */}
                     <button
                         type="button"
                         onClick={toggleMobileMenu}
@@ -93,15 +107,6 @@ export default function DropMenu() {
             {/* Mobile Navigation Menu */}
             {isMenuOpen && (
                 <div className="lg:hidden bg-blue-1000 text-white py-6 px-4 flex flex-col items-center text-center space-y-4 animate-dropdown">
-                    <Link href="/" className="button-container py-1 px-3 text-white hover:text-yellow-400">
-                        <Image
-                            src="/altitudehome.png"
-                            alt="Home"
-                            width={100}
-                            height={100}
-                            style={{ width: "auto", height: "100px" }}
-                        />
-                    </Link>
                     <Link href="/videoedits" className="button-container py-1 px-3 text-white hover:text-yellow-400">
                         Content
                     </Link>
@@ -113,7 +118,7 @@ export default function DropMenu() {
                         onClick={handleBookNowClick}
                         className="button-container py-2 px-4 text-white"
                     >
-                        Book Now
+                        Book Your Event
                     </button>
                 </div>
             )}
