@@ -44,7 +44,7 @@ export default function Contact() {
                 <div className={`container d-flex flex-column justify-content-center align-items-center mb-5 mt-5 ${styles.frostedGlass}`}>
                     <h2 className="display-3 mb-3">Get in Touch</h2>
                     <p className="lead" style={{ fontSize: "1.4rem" }}>
-                        We'd love to hear from you—whether it's a project, a question, or just a hello.
+                        We&apos;d love to hear from you, whether it&apos;s a project, a question, or just a hello.
                     </p>
                     <p className="text-light mb-4" style={{ fontSize: "1.5rem" }}>
                         Email us directly at:
@@ -93,7 +93,7 @@ export default function Contact() {
                             'noopener,noreferrer'
                         )}
                     >
-                        Book Now!
+                        Book Your Event
                     </button>
 
                 </div>

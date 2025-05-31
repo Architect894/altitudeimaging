@@ -18,51 +18,31 @@ export default function VideoEditing() {
         });
     };
 
-    const mobileVideos = [
+    const finishedVideos = [
         {
-            src: "https://altitudeimagingvideos.b-cdn.net/golfcourse.MP4",
+            src: "https://altitudeimagingvideos.b-cdn.net/Long%20Creek%20Final.mp4",
+            title: "Habitat Land Showing",
+            description: "A smooth flyover capturing beautiful land."
         },
         {
-            src: "https://altitudeimagingvideos.b-cdn.net/newporttower.MP4",
+            src: "https://altitudeimagingvideos.b-cdn.net/JACKSON%20GLADE%20240.MP4",
+            title: "Meet Seth Davis",
+            description: "Meet Seth Davis, let him show you around this beautiful land."
         },
         {
-            src: "https://altitudeimagingvideos.b-cdn.net/treewatertower.MP4",
+            src: "https://altitudeimagingvideos.b-cdn.net/newport%20city%20rando.mp4",
+            title: "Newport City Viewing",
+            description: "Viewing Newport from the best view possible."
         },
         {
-            src: "https://altitudeimagingvideos.b-cdn.net/bleachersportrait.MP4",
+            src: "https://altitudeimagingvideos.b-cdn.net/AltitudeAd1.mp4",
+            title: "George Kell Chevrolet",
+            description: "Scenic coverage of a bridge with flowing traffic and skyline views."
         },
         {
-            src: "https://altitudeimagingvideos.b-cdn.net/golfriver.MP4",
-        },
-        {
-            src: "https://altitudeimagingvideos.b-cdn.net/houses_.MP4",
-        },
-        {
-            src: "https://altitudeimagingvideos.b-cdn.net/watertower.MP4",
-        }
-    ];
-
-    const landscapeVideos = [
-        {
-            src: "https://altitudeimagingvideos.b-cdn.net/bleachers.MP4",
-        },
-        {
-            src: "https://altitudeimagingvideos.b-cdn.net/footballfour.MP4",
-        },
-        {
-            src: "https://altitudeimagingvideos.b-cdn.net/footballfield.MP4",
-        },
-        {
-            src: "https://altitudeimagingvideos.b-cdn.net/bridgeone.MP4",
-        },
-        {
-            src: "https://altitudeimagingvideos.b-cdn.net/bridgethree.MP4",
-        },
-        {
-            src: "https://altitudeimagingvideos.b-cdn.net/bridgetwo.MP4",
-        },
-        {
-            src: "https://jelliottvideos.b-cdn.net/altitudeadone.mp4",
+            src: "https://altitudeimagingvideos.b-cdn.net/AltitudeAd2.mp4",
+            title: "Newport Park",
+            description: "Check out some aerial views that show you Newport's awesome public park."
         },
     ];
 
@@ -74,96 +54,44 @@ export default function VideoEditing() {
                     href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.10.5/font/bootstrap-icons.css"
                 />
             </Head>
-            <section
-                className="text-white py-5 text-center"
-                style={{ fontFamily: "Quicksand" }}
-            >
-                <div className="container mb-5">
-                    <h2 className="display-4 mb-3">Portrait Video Projects</h2>
-                    <p className="lead">Want to elevate your brand&apos;s story? We specialize in eye-catching portrait videos designed to showcase your small business, community, or special project from a whole new perspective.</p>
-                </div>
 
-                <div
-                    className="container-fluid px-5"
-                    style={{
-                        overflowX: "auto",
-                        whiteSpace: "nowrap",
-                        display: "flex",
-                        gap: "3rem",
-                        paddingBottom: "2rem",
-                        scrollSnapType: "x mandatory",
-                    }}
-                >
-                    {mobileVideos.map((video, index) => (
-                        <div
-                            key={index}
-                            style={{
-                                width: "300px",
-                                flex: "0 0 auto",
-                                scrollSnapAlign: "center",
-                                textAlign: "left",
-                            }}
-                        >
-                            <h5 className="fw-semibold mb-2 text-white">{video.title}</h5>
-                            <p className="text-muted mb-3" style={{ fontSize: "0.9rem" }}>{video.description}</p>
-
-                            <video
-                                ref={(el) => (videoRefs.current[index] = el)}
-                                onPlay={() => handlePlay(index)}
-                                controls
-                                muted={false}
-                                className={styles.videoHoverEffect}
-                                style={{
-                                    width: "100%",
-                                    aspectRatio: "9 / 16",
-                                    objectFit: "cover",
-                                }}
-                            >
-                                <source src={video.src} type="video/mp4" />
-                                Your browser does not support the video tag.
-                            </video>
-                        </div>
-                    ))}
-                </div>
-            </section>
-
-            {/* Landscape Section */}
+            {/* Finished Videos Section */}
             <section className="text-white py-5" style={{ fontFamily: "Quicksand" }}>
                 <div className="container mb-5 text-center">
-                    <h3 className="display-5 mb-3">Landscape Video Projects</h3>
-                    <p className="lead">Looking to make a big-screen impact?
-At Altitude Imaging, we produce stunning landscape videos ideal for websites, presentations, and advertising displays. Whether you&apos;re highlighting your business, community, or a special project,
-our aerial footage and expert editing bring your story to life in a wide, cinematic format that leaves a lasting impression.</p>
+                    <h3 className="display-5 bg-gray-900 p-4 rounded">View My Work</h3>
+                    <p className="lead mb-4 bg-gray-800" style={{ fontSize: "1.5rem" }}>
+                        At Altitude Imaging, we deliver fully edited, professional-grade videos 
+                        that are ready to share with your audience. Whether you're showcasing your business, community, 
+                        or a special project, our cinematic landscape videos are crafted to captivate—perfect for websites, 
+                        presentations, and long-term marketing that future customers will remember.
+                    </p>
                 </div>
 
                 <div className="container">
-                    <div className="row g-4 justify-content-center">
-                        {landscapeVideos.map((video, index) => {
-                            const globalIndex = mobileVideos.length + index;
-                            return (
-                                <div className="col-12 col-md-6 col-lg-5" key={index}>
-                                    <h5 className="fw-semibold text-white">{video.title}</h5>
-                                    <p className="text-muted mb-2" style={{ fontSize: "0.9rem" }}>{video.description}</p>
-                                    <video
-                                        ref={(el) => (videoRefs.current[globalIndex] = el)}
-                                        onPlay={() => handlePlay(globalIndex)}
-                                        controls
-                                        muted={false}
-                                        className={styles.videoHoverEffect}
-                                        style={{
-                                            width: "100%",
-                                            objectFit: "cover",
-                                        }}
-                                    >
-                                        <source src={video.src} type="video/mp4" />
-                                        Your browser does not support the video tag.
-                                    </video>
-                                </div>
-                            );
-                        })}
+                    <div className="row g-4 justify-content-center bg-dark p-4 rounded">
+                        {finishedVideos.map((video, index) => (
+                            <div className="col-12 col-md-6 col-lg-6" key={index}>
+                                <h5 className="fw-semibold text-white fs-1 text-center">{video.title}</h5>
+                                <p className="text-white mb-3 text-center fs-5" style={{ fontSize: "1.2rem" }}>{video.description}</p>
+                                <video
+                                    ref={(el) => (videoRefs.current[index] = el)}
+                                    onPlay={() => handlePlay(index)}
+                                    controls
+                                    muted={false}
+                                    className={styles.videoHoverEffect}
+                                    style={{
+                                        width: "100%",
+                                        objectFit: "cover",
+                                    }}
+                                >
+                                    <source src={video.src} type="video/mp4" />
+                                    Your browser does not support the video tag.
+                                </video>
+                            </div>
+                        ))}
                     </div>
                 </div>
-            </section >
-        </PagesLayout >
+            </section>
+        </PagesLayout>
     );
 }

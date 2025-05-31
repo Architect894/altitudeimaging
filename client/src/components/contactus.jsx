@@ -35,11 +35,11 @@ export default function ContactUs() {
                                 playsInline
                             />
                             <div className="p-8">
-                                <h3 className="text-lg font-semibold text-white">Aerial Media</h3>
-                                <p className="mt-2 text-lg font-medium tracking-tight text-gray-200">
+                                <h3 className="fs-2 font-semibold text-white">Aerial Media</h3>
+                                <p className="mt-1 fs-5 font-medium tracking-tight text-gray-200">
                                     Elevate Your Brand
                                 </p>
-                                <p className="mt-2 text-sm text-white">
+                                <p className="mt-2 text-sm text-white fs-6">
                                     Need professional drone footage that delivers real results? Whether it&apos;s social media content, community highlights, or full-scale commercial ads, Altitude Imaging captures and produces stunning aerial videos tailored to your unique vision—using the latest drone technology and professional editing to make your message stand out.
                                 </p>
                                 <div className="mt-4 text-center">
@@ -47,7 +47,7 @@ export default function ContactUs() {
                                         onClick={handleBookNowClick}
                                         className="btn btn-primary px-4 py-2 mt-3 text-white rounded-lg shadow hover:scale-105 transition-all"
                                     >
-                                        Book Now
+                                        Book It
                                     </button>
                                 </div>
                             </div>
@@ -66,11 +66,11 @@ export default function ContactUs() {
                                 playsInline
                             />
                             <div className="p-8">
-                                <h3 className="text-lg font-semibold text-white">Events</h3>
-                                <p className="mt-2 text-lg font-medium tracking-tight text-white">
+                                <h3 className="fs-2 font-semibold text-white">Events</h3>
+                                <p className="mt-1 fs-5 font-medium tracking-tight text-gray-200">
                                     Turn your next event into unforgettable content.
                                 </p>
-                                <p className="mt-2 text-sm text-white">
+                                <p className="mt-2 text-sm text-white fs-6">
                                     From festivals and grand openings to community gatherings and corporate events, Altitude Imaging captures every moment from breathtaking aerial angles. Our professional event coverage helps you relive the energy, showcase attendance, and promote future events with stunning highlight reels and promotional videos.
                                 </p>
                                 <div className="mt-4 text-center">
@@ -78,7 +78,7 @@ export default function ContactUs() {
                                         onClick={handleBookNowClick}
                                         className="btn btn-primary px-4 py-2 mt-3 text-white rounded-lg shadow hover:scale-105 transition-all"
                                     >
-                                        Book Now
+                                        Book It
                                     </button>
                                 </div>
                             </div>
@@ -97,11 +97,11 @@ export default function ContactUs() {
                                 playsInline
                             />
                             <div className="p-8">
-                                <h3 className="text-lg font-semibold text-white">Business Marketing</h3>
-                                <p className="mt-2 text-lg font-medium tracking-tight text-white">
+                                <h3 className="fs-2 font-semibold text-white">Business Marketing</h3>
+                                <p className="mt-1 fs-5 font-medium tracking-tight text-gray-200">
                                     Showcase your business like never before.
                                 </p>
-                                <p className="mt-2 text-sm text-white">
+                                <p className="mt-2 text-sm text-white fs-6">
                                     We help businesses of all sizes stand out with cinematic aerial content perfect for websites, social media, and digital ads. Whether you&apos;re promoting your services, showing off your location, or creating a brand story, our professional drone videos help you capture attention and turn viewers into customers.
                                 </p>
                                 <div className="mt-4 text-center">
@@ -109,7 +109,7 @@ export default function ContactUs() {
                                         onClick={handleBookNowClick}
                                         className="btn btn-primary px-4 py-2 mt-3 text-white rounded-lg shadow hover:scale-105 transition-all"
                                     >
-                                        Book Now
+                                        Book It
                                     </button>
                                 </div>
                             </div>
@@ -128,11 +128,11 @@ export default function ContactUs() {
                                 playsInline
                             />
                             <div className="p-8">
-                                <h3 className="text-lg font-semibold text-white">Social Media Management</h3>
-                                <p className="mt-2 text-lg font-medium tracking-tight text-white">
+                                <h3 className="fs-2 font-semibold text-white">Social Media Management</h3>
+                                <p className="mt-1 fs-5 font-medium tracking-tight text-gray-200">
                                     Let your content work for you.
                                 </p>
-                                <p className="mt-2 text-sm text-white">
+                                <p className="mt-2 text-sm text-white fs-6">
                                     We don&apos;t just create stunning videos—we help you share them with the right audience. Altitude Imaging offers social media management services to keep your business active online with consistent posting, audience engagement, and strategy-driven content that boosts your reach and grows your brand across platforms like Facebook, Instagram, TikTok, and YouTube.
                                 </p>
                                 <div className="mt-4 text-center">
@@ -140,7 +140,7 @@ export default function ContactUs() {
                                         onClick={handleBookNowClick}
                                         className="btn btn-primary px-4 py-2 mt-3 text-white rounded-lg shadow hover:scale-105 transition-all"
                                     >
-                                        Book Now
+                                        Book It
                                     </button>
                                 </div>
                             </div>

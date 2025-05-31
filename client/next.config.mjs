@@ -3,6 +3,9 @@ const nextConfig = {
     eslint: {
         ignoreDuringBuilds: true, // ✅ Disable ESLint errors during Vercel build
     },
+    images: {
+        domains: ['altitudeimagingvideos.b-cdn.net'], // ✅ Allow external image domain
+    },
     webpack: (config, { buildId, dev, isServer, defaultLoaders, webpack }) => {
         config.module.rules.push({
             test: /\.svg$/,
