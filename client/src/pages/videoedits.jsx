@@ -59,12 +59,13 @@ export default function VideoEditing() {
             <section className="text-white py-5" style={{ fontFamily: "Quicksand" }}>
                 <div className="container mb-5 text-center">
                     <h3 className="display-5 bg-gray-900 p-4 rounded">View My Work</h3>
-                    <p className="lead mb-4 bg-gray-800" style={{ fontSize: "1.5rem" }}>
-                        At Altitude Imaging, we deliver fully edited, professional-grade videos 
-                        that are ready to share with your audience. Whether you're showcasing your business, community, 
-                        or a special project, our cinematic landscape videos are crafted to captivate—perfect for websites, 
+                    <p className="lead mb-4 p-3 bg-gray-800 text-base sm:text-lg md:text-xl lg:text-2xl xl:text-[1.5rem]">
+                        At Altitude Imaging, we deliver fully edited, professional-grade videos
+                        that are ready to share with your audience. Whether you&apos;re showcasing your business, community,
+                        or a special project, our cinematic landscape videos are crafted to captivate—perfect for websites,
                         presentations, and long-term marketing that future customers will remember.
                     </p>
+
                 </div>
 
                 <div className="container">
