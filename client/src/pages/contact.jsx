@@ -93,7 +93,7 @@ export default function Contact() {
                             'noopener,noreferrer'
                         )}
                     >
-                        Book Your Event
+                        View Pricing
                     </button>
 
                 </div>

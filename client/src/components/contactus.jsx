@@ -47,7 +47,7 @@ export default function ContactUs() {
                                         onClick={handleBookNowClick}
                                         className="btn btn-primary px-4 py-2 mt-3 text-white rounded-lg shadow hover:scale-105 transition-all"
                                     >
-                                        Book It
+                                        Packages
                                     </button>
                                 </div>
                             </div>
@@ -78,7 +78,7 @@ export default function ContactUs() {
                                         onClick={handleBookNowClick}
                                         className="btn btn-primary px-4 py-2 mt-3 text-white rounded-lg shadow hover:scale-105 transition-all"
                                     >
-                                        Book It
+                                        Packages
                                     </button>
                                 </div>
                             </div>
@@ -109,7 +109,7 @@ export default function ContactUs() {
                                         onClick={handleBookNowClick}
                                         className="btn btn-primary px-4 py-2 mt-3 text-white rounded-lg shadow hover:scale-105 transition-all"
                                     >
-                                        Book It
+                                        Packages
                                     </button>
                                 </div>
                             </div>
@@ -140,7 +140,7 @@ export default function ContactUs() {
                                         onClick={handleBookNowClick}
                                         className="btn btn-primary px-4 py-2 mt-3 text-white rounded-lg shadow hover:scale-105 transition-all"
                                     >
-                                        Book It
+                                        Packages
                                     </button>
                                 </div>
                             </div>
