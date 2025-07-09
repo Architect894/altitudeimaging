@@ -20,6 +20,16 @@ export default function VideoEditing() {
 
     const finishedVideos = [
         {
+            src: "https://altitudeimagingvideos.b-cdn.net/Portfolio.m4v",
+            title: "Portfolio of Altitude Imaging",
+            description: "A quick visual showcase of Altitude Imaging's premium aerial photography and videography services, highlighting stunning drone footage for real estate, events, and commercial projects."
+        },
+        {
+            src: "https://altitudeimagingvideos.b-cdn.net/Delta%20Arts%20Festival.m4v",
+            title: "Delta Arts Festival",
+            description: "A vibrant recap of the Delta Arts Festival, featuring local artists, live performances, and community highlights that capture the creative spirit of the Delta region."
+        },
+        {
             src: "https://altitudeimagingvideos.b-cdn.net/Long%20Creek%20Final.mp4",
             title: "Habitat Land Showing",
             description: "A smooth flyover capturing beautiful land."
