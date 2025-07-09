@@ -130,7 +130,7 @@ export default function Home() {
 
             <section id="portfolio-video" className="py-5 bg-dark text-white">
                 <div className="container">
-                    <h2 className="text-center mb-4">Portfolio</h2>
+                    <h2 className="text-center mb-4 fs-1">Portfolio</h2>
                     <p className="text-center mb-4 fs-5">
                         A quick visual showcase of our premium aerial
                         photography and videography services, highlighting stunning drone
