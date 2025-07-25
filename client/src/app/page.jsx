@@ -143,7 +143,7 @@ export default function Home() {
                                 to continue to do business with Altitude Imaging!"
                             </p>
                             <div className="mt-4 text-sm text-gray-400">
-                                Fonda Evins, 2 months ago
+                                Fonda Evins
                             </div>
                         </div>
                         <div className="bg-gray-800 p-6 rounded-lg shadow-lg transform transition duration-300 hover:scale-105 hover:shadow-2xl">
@@ -155,7 +155,7 @@ export default function Home() {
                                 footage and even commercials, his work is outstanding."
                             </p>
                             <div className="mt-4 text-sm text-gray-400">
-                                Chris Ferguson, 1 day ago
+                                Chris Ferguson
                             </div>
                         </div>
                     </div>
