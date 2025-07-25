@@ -127,10 +127,54 @@ export default function Home() {
                     </div>
                 </header>
             </section>
+            {/* 👇 Google Reviews Section 👇 */}
+            <section className="text-white py-16">
+                <div className="container mx-auto max-w-6xl px-4">
+                    <h2 className="text-4xl font-bold mb-12 text-center">
+                        What People Are Saying
+                    </h2>
+                    <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
+                        <div className="bg-gray-800 p-6 rounded-lg shadow-lg transform transition duration-300 hover:scale-105 hover:shadow-2xl">
+                            <p className="text-yellow-400 text-2xl mb-2 text-center">★★★★★</p>
+                            <p className="italic">
+                                "Jarred brought his media expertise to Evins Healthcare and blew us
+                                all away! Altitude Imaging is the way to go, hands down. He was
+                                professional, informative, and prompt with our video! We are excited
+                                to continue to do business with Altitude Imaging!"
+                            </p>
+                            <div className="mt-4 text-sm text-gray-400">
+                                Fonda Evins, 2 months ago
+                            </div>
+                        </div>
+                        <div className="bg-gray-800 p-6 rounded-lg shadow-lg transform transition duration-300 hover:scale-105 hover:shadow-2xl">
+                            <p className="text-yellow-400 text-2xl mb-2 text-center">★★★★★</p>
+                            <p className="italic">
+                                "Working with Jarred at Altitude Imaging has been an absolute
+                                pleasure! He is incredibly professional, knowledgeable, and makes the
+                                entire process smooth and stress-free. From listing photos to drone
+                                footage and even commercials, his work is outstanding."
+                            </p>
+                            <div className="mt-4 text-sm text-gray-400">
+                                Chris Ferguson, 1 day ago
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div className="text-center">
+                    <a
+                        href="https://www.google.com/search?client=opera-gx&sca_esv=0e7e332804e82cc8&biw=1738&bih=1280&sxsrf=AE3TifOLZSi5uHlubFt8kPLI_4Z3w0RBSQ:1753416551121&si=AMgyJEtREmoPL4P1I5IDCfuA8gybfVI2d5Uj7QMwYCZHKDZ-E5UD8-DI2nNuWDO2DOMbTnzYI1-kCEDspNUfjwsU08PNM2A1iC2dfzUt5vcWeFGw4uU4sDk7Il5ZYgql9lKBnysP3KURtkL7wlVk5vEOte83VUc8sA%3D%3D&q=Altitude+Imaging+Reviews&sa=X&ved=2ahUKEwik0qvVkdeOAxV548kDHYqrOM4Q0bkNegQIHhAD"
+                        target="_blank"
+                        rel="noopener noreferrer"
+                        className="inline-block px-6 py-3 bg-blue-600 text-white font-semibold rounded hover:bg-blue-500 transition mt-5"
+                    >
+                        See More Google Reviews
+                    </a>
+                </div>
+        </section >
 
             <section id="portfolio-video" className="py-5 bg-dark text-white">
                 <div className="container">
-                    <h2 className="text-center mb-4 fs-1">Portfolio</h2>
+                    <h2 className="text-center mb-4 fs-1 font-bold">Portfolio</h2>
                     <p className="text-center mb-4 fs-5">
                         A quick visual showcase of our premium aerial
                         photography and videography services, highlighting stunning drone
