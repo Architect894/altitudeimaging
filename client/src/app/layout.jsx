@@ -1,8 +1,9 @@
 import 'bootstrap/dist/css/bootstrap.min.css';
-import '@/styles/global.css'; // Adjust path to your global CSS file
+import '@/styles/global.css';
 import ContactUs from "@/components/contactus";
 import DropMenu from "@/components/dropMenu";
 import Footer from "@/components/footer";
+import AnalyticsWrapper from '@/components/AnalyticsWrapper'; // 👈 THIS replaces your old Analytics import
 
 export const metadata = {
   title: "Altitude Imaging",
@@ -13,18 +14,18 @@ export default function RootLayout({ children }) {
   return (
     <html lang="en" data-bs-theme="dark">
       <head>
-        {/* Bootstrap Icons CDN */}
         <link
           rel="stylesheet"
           href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.10.5/font/bootstrap-icons.css"
         />
       </head>
-        <body className="custom-layout"> {/* Add the custom class */}
-          <DropMenu />
-          {children}
-          <ContactUs />
-          <Footer />
-        </body>
+      <body className="custom-layout">
+        <DropMenu />
+        {children}
+        <ContactUs />
+        <Footer />
+        <AnalyticsWrapper /> {/* 👈 Place this once at the bottom of the body */}
+      </body>
     </html>
   );
 }
