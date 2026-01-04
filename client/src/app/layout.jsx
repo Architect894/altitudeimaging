@@ -1,6 +1,5 @@
 import 'bootstrap/dist/css/bootstrap.min.css';
 import '@/styles/global.css';
-import ContactUs from "@/components/contactus";
 import DropMenu from "@/components/dropMenu";
 import Footer from "@/components/footer";
 import AnalyticsWrapper from '@/components/AnalyticsWrapper'; // 👈 THIS replaces your old Analytics import
@@ -22,7 +21,6 @@ export default function RootLayout({ children }) {
       <body className="custom-layout">
         <DropMenu />
         {children}
-        <ContactUs />
         <Footer />
         <AnalyticsWrapper /> {/* 👈 Place this once at the bottom of the body */}
       </body>

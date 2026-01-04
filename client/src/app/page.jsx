@@ -46,7 +46,7 @@ export default function Home() {
                         className={styles.videoBackground}
                     >
                         <source
-                            src="https://altitudeimagingvideos.b-cdn.net/Delta%20Arts%20Festival.m4v"
+                            src="https://altitudeimagingvideos.b-cdn.net/AltitudeLoop.m4v"
                             type="video/mp4"
                         />
                         Your browser does not support the video tag.
@@ -58,11 +58,11 @@ export default function Home() {
                     >
                         <h1 className="display-4 mb-5">See More. Know More. Do More.</h1>
                         <p className="lead mb-5 text-xl md:text-2xl lg:text-3xl">
-                            We&apos;re dedicated to helping businesses, communities, and
-                            creators stand out with professional drone media and marketing
-                            solutions. From breathtaking aerial footage to event coverage and
-                            strategic social-media content, we bring your vision to life with
-                            high-quality production that makes an impact from every angle.
+                            Premium aviation media that turns aircraft, training, and experiences into demand.
+                            <br />Altitude Imaging helps flight schools, dealers, charter operators, and aviation brands stand out 
+                            with cinematic aerials, on-ground production, 
+                            and scroll-stopping social content. 
+                            <br />Crafted to make prospects feel the flight before they ever book.
                         </p>
 
                         <div className="d-flex justify-content-center gap-3 mb-4">
@@ -127,6 +127,42 @@ export default function Home() {
                     </div>
                 </header>
             </section>
+            {/* 👇 Companies Who Trust Us 👇 */}
+            <section className="py-16 bg-dark text-white">
+                <div className="container mx-auto max-w-6xl px-4">
+                    <h2 className="text-4xl font-bold mb-10 text-center">
+                        Companies Who Trust Us:
+                    </h2>
+
+                    <div className="logoMarquee">
+                        <div className="logoTrack">
+                            {/* Set 1 */}
+                            {[
+                                { src: "https://altitudeimagingvideos.b-cdn.net/habitatwhite.png", alt: "Habitat Land" },
+                                { src: "https://altitudeimagingvideos.b-cdn.net/for_website.png", alt: "Flying C Aviation" },
+                                { src: "https://altitudeimagingvideos.b-cdn.net/CentralLogo.png", alt: "Central Logo" },
+                                { src: "https://altitudeimagingvideos.b-cdn.net/tecnamlogo.png", alt: "Tecnam Logo" },
+                            ].map((logo, i) => (
+                                <div className="logoItem" key={`logo-a-${i}`}>
+                                    <img src={logo.src} alt={logo.alt} />
+                                </div>
+                            ))}
+
+                            {/* Set 2 (duplicate for seamless loop) */}
+                            {[
+                                { src: "https://altitudeimagingvideos.b-cdn.net/habitatwhite.png", alt: "Evins Healthcare" },
+                                { src: "https://altitudeimagingvideos.b-cdn.net/for_website.png", alt: "Flying C Aviation" },
+                                { src: "https://altitudeimagingvideos.b-cdn.net/CentralLogo.png", alt: "Central Aviation" },
+                                { src: "https://altitudeimagingvideos.b-cdn.net/tecnamlogo.png", alt: "Tecnam Logo" },
+                            ].map((logo, i) => (
+                                <div className="logoItem" key={`logo-b-${i}`}>
+                                    <img src={logo.src} alt={logo.alt} />
+                                </div>
+                            ))}
+                        </div>
+                    </div>
+                </div>
+            </section>
             {/* 👇 Google Reviews Section 👇 */}
             <section className="text-white py-16">
                 <div className="container mx-auto max-w-6xl px-4">
@@ -170,7 +206,7 @@ export default function Home() {
                         See More Google Reviews
                     </a>
                 </div>
-        </section >
+            </section >
 
             <section id="portfolio-video" className="py-5 bg-dark text-white">
                 <div className="container">
