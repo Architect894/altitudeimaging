@@ -2,7 +2,7 @@
 
 import React, { useState } from "react";
 import Link from "next/link";
-import Image from "next/image"; // ✅ Imported Next.js Image component
+import Image from "next/image";
 import "../styles/global.css";
 import "../styles/styles.module.css";
 
@@ -10,12 +10,12 @@ export default function DropMenu() {
     const [isMenuOpen, setIsMenuOpen] = useState(false);
 
     const toggleMobileMenu = () => {
-        setIsMenuOpen(!isMenuOpen);
+        setIsMenuOpen((prev) => !prev);
     };
 
-    const handleBookNowClick = () => {
+    const handlePastorPilotClick = () => {
         window.open(
-            "https://altitudeimaging.hbportal.co/public/682a5bb52c86d7002408cd0f",
+            "https://www.youtube.com/@PastorPilot9116",
             "_blank",
             "noopener,noreferrer"
         );
@@ -40,31 +40,45 @@ export default function DropMenu() {
             >
                 {/* Desktop Navigation Links */}
                 <div className="hidden lg:flex w-full justify-center items-center space-x-6">
-                    <Link href="/" className="button-container py-1 px-3 text-white hover:text-yellow-400">
+                    <Link
+                        href="/"
+                        className="button-container py-1 px-3 text-white hover:text-yellow-400"
+                    >
                         <Image
                             src="/altitudehome.png"
                             alt="Home"
                             width={110}
                             height={110}
                             style={{ width: "auto", height: "110px" }}
+                            priority
                         />
                     </Link>
+
                     <Link href="/videoedits" className="button-container py-1 px-3">
                         Content
                     </Link>
+
                     <Link href="/contact" className="button-container py-1 px-3">
                         Get In Touch
                     </Link>
-                    {/* ✅ Book Now Button - Desktop */}
+
+                    {/* Pastor Pilot YouTube Logo Button */}
                     <button
-                        onClick={handleBookNowClick}
-                        className="button-container py-1 px-4"
+                        type="button"
+                        onClick={handlePastorPilotClick}
+                        className="button-container py-1 px-3 flex items-center hover:scale-105 transition-transform"
+                        aria-label="Visit Pastor Pilot YouTube Channel"
                     >
-                        Pricing
+                        <Image
+                            src="https://altitudeimagingvideos.b-cdn.net/PastorPilot.png"
+                            alt="Pastor Pilot YouTube Channel"
+                            width={140}
+                            height={44}
+                            style={{ width: "auto", height: "44px" }}
+                        />
                     </button>
                 </div>
 
-                {/* Mobile Menu Toggle Button */}
                 {/* Mobile Navigation Bar (Closed State) */}
                 <div className="flex lg:hidden w-full items-center justify-between px-2 py-1 h-[84px]">
                     {/* Logo on the Left */}
@@ -72,10 +86,11 @@ export default function DropMenu() {
                         <Image
                             src="/altitudehome.png"
                             alt="Home"
-                        width={120}
-                        height={60}
-                        style={{ width: "auto", height: "200px" }}
-                        className="h-10 w-auto transition-transform duration-300 ease-in-out hover:scale-105"
+                            width={120}
+                            height={60}
+                            style={{ width: "auto", height: "60px" }}
+                            className="h-10 w-auto transition-transform duration-300 ease-in-out hover:scale-105"
+                            priority
                         />
                     </Link>
 
@@ -84,8 +99,8 @@ export default function DropMenu() {
                         type="button"
                         onClick={toggleMobileMenu}
                         className="inline-flex items-center justify-center rounded-md p-2.5 text-gray-400"
+                        aria-label="Open main menu"
                     >
-                        <span className="sr-only">Open main menu</span>
                         <svg
                             className="h-6 w-6"
                             fill="none"
@@ -107,21 +122,40 @@ export default function DropMenu() {
             {/* Mobile Navigation Menu */}
             {isMenuOpen && (
                 <div className="lg:hidden bg-blue-1000 text-white py-6 px-4 flex flex-col items-center text-center space-y-4 animate-dropdown">
-                    <Link href="/videoedits" className="button-container py-1 px-3 text-white hover:text-yellow-400">
+                    <Link
+                        href="/videoedits"
+                        className="button-container py-1 px-3 text-white hover:text-yellow-400"
+                        onClick={() => setIsMenuOpen(false)}
+                    >
                         Content
                     </Link>
-                    <Link href="/contact" className="button-container py-1 px-3 text-white hover:text-yellow-400">
+
+                    <Link
+                        href="/contact"
+                        className="button-container py-1 px-3 text-white hover:text-yellow-400"
+                        onClick={() => setIsMenuOpen(false)}
+                    >
                         Get In Touch →
                     </Link>
-                    {/* ✅ Book Now Button - Mobile */}
+
+                    {/* Pastor Pilot YouTube Logo Button - Mobile */}
                     <button
-                        onClick={handleBookNowClick}
-                        className="button-container py-2 px-4 text-white"
+                        type="button"
+                        onClick={handlePastorPilotClick}
+                        className="button-container py-2 px-4 flex items-center justify-center hover:scale-105 transition-transform"
+                        aria-label="Visit Pastor Pilot YouTube Channel"
                     >
-                        Pricing
+                        <Image
+                            src="https://altitudeimagingvideos.b-cdn.net/PastorPilot.png"
+                            alt="Pastor Pilot YouTube Channel"
+                            width={160}
+                            height={50}
+                            style={{ width: "auto", height: "50px" }}
+                        />
                     </button>
                 </div>
             )}
         </header>
     );
 }
+

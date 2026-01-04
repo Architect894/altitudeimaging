@@ -187,3 +187,79 @@ body.dark-theme {
 .button-container:hover::after {
     transform: scaleX(1);
 }
+
+.logoMarquee {
+    position: relative;
+    overflow: hidden;
+    width: 100%;
+    padding: 12px 0;
+    border-radius: 16px;
+    background: rgba(255, 255, 255, 0.04);
+    border: 1px solid rgba(255, 255, 255, 0.10);
+}
+
+.logoTrack {
+    display: flex;
+    align-items: center;
+    width: max-content;
+    gap: 48px;
+    animation: marquee 28s linear infinite;
+    will-change: transform;
+}
+
+/* Optional: pause on hover */
+.logoMarquee:hover .logoTrack {
+    animation-play-state: paused;
+}
+
+.logoItem {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    height: 80px;
+    /* controls row height */
+    padding: 0 8px;
+}
+
+.logoItem img {
+    height: 100%;
+    width: auto;
+    max-height: 80px;
+    object-fit: contain;
+    filter: grayscale(100%);
+    opacity: 0.9;
+    transition: transform 0.2s ease, opacity 0.2s ease, filter 0.2s ease;
+}
+
+.logoItem img:hover {
+    transform: scale(1.06);
+    opacity: 1;
+    filter: grayscale(0%);
+}
+
+@keyframes marquee {
+    0% {
+        transform: translateX(0);
+    }
+
+    100% {
+        /* Move left by half the track since we duplicated the logos */
+        transform: translateX(-50%);
+    }
+}
+
+/* Responsive tweaks */
+@media (max-width: 768px) {
+    .logoTrack {
+        gap: 28px;
+        animation-duration: 22s;
+    }
+
+    .logoItem {
+        height: 56px;
+    }
+
+    .logoItem img {
+        max-height: 56px;
+    }
+}
