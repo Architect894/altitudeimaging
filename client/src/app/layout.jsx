@@ -7,9 +7,6 @@ import AnalyticsWrapper from '@/components/AnalyticsWrapper'; // 👈 THIS repla
 export const metadata = {
   title: "Altitude Imaging",
   description: "Altitude Imaging - Elevate Your Visual Experience",
-  icons: {
-    icon: "/favicon.ico",
-  },
 };
 
 export default function RootLayout({ children }) {
