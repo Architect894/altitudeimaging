@@ -1,12 +1,19 @@
 /** @type {import('next').NextConfig} */
 const nextConfig = {
-    eslint: {
-        ignoreDuringBuilds: true, // ✅ Disable ESLint errors during Vercel build
-    },
+    // ✅ New way to allow external images
     images: {
-        domains: ['altitudeimagingvideos.b-cdn.net'], // ✅ Allow external image domain
+        remotePatterns: [
+            {
+                protocol: 'https',
+                hostname: 'altitudeimagingvideos.b-cdn.net',
+                // You can add pathname if you want to restrict further, e.g.:
+                // pathname: '/**',
+            },
+        ],
     },
-    webpack: (config, { buildId, dev, isServer, defaultLoaders, webpack }) => {
+
+    // ✅ Keep your SVG loader customization
+    webpack(config) {
         config.module.rules.push({
             test: /\.svg$/,
             use: [
@@ -20,6 +27,7 @@ const nextConfig = {
                 'svgo-loader',
             ],
         });
+
         return config;
     },
 };
