@@ -1,5 +1,5 @@
 {
-  "name": "unitedpestcontrol",
+  "name": "altitudeimaging",
   "version": "0.1.0",
   "private": true,
   "scripts": {
@@ -12,13 +12,13 @@
     "aos": "^2.3.4",
     "bootstrap": "^5.3.3",
     "next": "16.1.1",
-    "react": "19.0.0-rc-66855b96-20241106",
-    "react-dom": "19.0.0-rc-66855b96-20241106"
+    "react": "18.3.1",
+    "react-dom": "18.3.1"
   },
   "devDependencies": {
     "autoprefixer": "^10.4.20",
-    "eslint": "^8",
-    "eslint-config-next": "15.0.3",
+    "eslint": "^9.0.0",
+    "eslint-config-next": "16.1.1",
     "file-loader": "^6.2.0",
     "postcss": "^8.4.49",
     "tailwindcss": "^3.4.15",
