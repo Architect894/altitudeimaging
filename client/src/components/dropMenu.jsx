@@ -61,22 +61,6 @@ export default function DropMenu() {
                     <Link href="/contact" className="button-container py-1 px-3">
                         Get In Touch
                     </Link>
-
-                    {/* Pastor Pilot YouTube Logo Button */}
-                    <button
-                        type="button"
-                        onClick={handlePastorPilotClick}
-                        className="button-container py-1 px-3 flex items-center hover:scale-105 transition-transform"
-                        aria-label="Visit Pastor Pilot YouTube Channel"
-                    >
-                        <Image
-                            src="https://altitudeimagingvideos.b-cdn.net/PastorPilot.png"
-                            alt="Pastor Pilot YouTube Channel"
-                            width={140}
-                            height={44}
-                            style={{ width: "auto", height: "44px" }}
-                        />
-                    </button>
                 </div>
 
                 {/* Mobile Navigation Bar (Closed State) */}
