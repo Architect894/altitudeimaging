@@ -107,39 +107,39 @@ export default function DropMenu() {
             {/* Mobile Navigation Menu */}
             {isMenuOpen && (
                 <div className="lg:hidden bg-blue-1000 text-white py-6 px-4 flex flex-col items-center text-center space-y-4 animate-dropdown">
-                    <Link
-                        href="/videoedits"
-                        className="button-container py-1 px-3 text-white hover:text-yellow-400"
-                        onClick={() => setIsMenuOpen(false)}
-                    >
-                        Content
-                    </Link>
 
-                    <Link
-                        href="/contact"
-                        className="button-container py-1 px-3 text-white hover:text-yellow-400"
+                    {/* Content link */}
+                    <a
+                        href="https://www.notion.so/Work-with-us-2f5154c8e1ff806ea5d4c9c5ef8c47ad"
+                        target="_blank"
+                        rel="noopener noreferrer"
+                        className="button-container py-1 px-3 text-white hover:text-yellow-400 transition-all"
                         onClick={() => setIsMenuOpen(false)}
                     >
-                        Get In Touch →
-                    </Link>
+                        Work With Us
+                    </a>
 
                     {/* Pastor Pilot YouTube Logo Button - Mobile */}
-                    <button
-                        type="button"
-                        onClick={handlePastorPilotClick}
+                    <a
+                        href="https://www.notion.so/Work-with-us-2f5154c8e1ff806ea5d4c9c5ef8c47ad"
+                        target="_blank"
+                        rel="noopener noreferrer"
+                        onClick={() => setIsMenuOpen(false)}
                         className="button-container py-2 px-4 flex items-center justify-center hover:scale-105 transition-transform"
-                        aria-label="Visit Pastor Pilot YouTube Channel"
+                        aria-label="Work With Us"
                     >
                         <Image
                             src="https://altitudeimagingvideos.b-cdn.net/PastorPilot.png"
-                            alt="Pastor Pilot YouTube Channel"
+                            alt="Work With Us"
                             width={160}
                             height={50}
                             style={{ width: "auto", height: "50px" }}
                         />
-                    </button>
+                    </a>
+
                 </div>
             )}
+
         </header>
     );
 }
