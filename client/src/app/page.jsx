@@ -57,219 +57,191 @@ export default function Home() {
 
     return (
         <>
-            {/* 👇 YouTube Feature Section (circle logo + arrows) 👇 */}
-            <section id="youtube-feature" className="py-3 text-white">
+            {/* 👇 YouTube Feature Section (smaller + centered) 👇 */}
+            <section id="youtube-feature" className="py-4 text-white">
                 <div className="container">
-                    <div className="d-flex justify-content-center align-items-center gap-3 mb-3 flex-wrap">
-                        {/* Left Arrow */}
-                        <button
-                            type="button"
-                            onClick={goPrev}
-                            className="btn btn-outline-light"
-                            aria-label="Previous video"
-                            style={{
-                                width: 48,
-                                height: 48,
-                                borderRadius: 999,
-                                display: "flex",
-                                alignItems: "center",
-                                justifyContent: "center",
-                                fontSize: "1.75rem",
-                                lineHeight: 1,
-                            }}
-                        >
-                            ‹
-                        </button>
-
-                        {/* Circular Channel Logo (clickable) */}
-                        <a
-                            href={YT_CHANNEL_URL}
-                            target="_blank"
-                            rel="noopener noreferrer"
-                            aria-label="Visit Pastor Pilot YouTube channel"
-                            style={{
-                                width: 64,
-                                height: 64,
-                                borderRadius: "50%",
-                                overflow: "hidden",
-                                display: "inline-flex",
-                                alignItems: "center",
-                                justifyContent: "center",
-                                background: "rgba(255,255,255,0.08)",
-                                boxShadow: "0 0 0 rgba(255,0,0,0)",
-                                transform: "translateY(0px) scale(1)",
-                                transition: "transform 180ms ease, box-shadow 180ms ease",
-                            }}
-                            onMouseEnter={(e) => {
-                                e.currentTarget.style.transform = "translateY(-2px) scale(1.06)";
-                                e.currentTarget.style.boxShadow = "0 0 18px rgba(0, 110, 255, 0.45)";
-                            }}
-                            onMouseLeave={(e) => {
-                                e.currentTarget.style.transform = "translateY(0px) scale(1)";
-                                e.currentTarget.style.boxShadow = "0 0 0 rgba(255,0,0,0)";
-                            }}
-                        >
-                            <Image
-                                src="https://altitudeimagingvideos.b-cdn.net/PastorPilot.png"
-                                alt="Pastor Pilot YouTube Channel"
-                                width={96}
-                                height={96}
+                    {/* wrapper to control max width */}
+                    <div className={styles.ytWrap}>
+                        {/* controls row */}
+                        <div className="d-flex justify-content-center align-items-center gap-3 mb-2 flex-wrap">
+                            <button
+                                type="button"
+                                onClick={goPrev}
+                                className="btn btn-outline-light"
+                                aria-label="Previous video"
                                 style={{
-                                    width: "100%",
-                                    height: "100%",
-                                    objectFit: "cover",
+                                    width: 44,
+                                    height: 44,
+                                    borderRadius: 999,
+                                    display: "flex",
+                                    alignItems: "center",
+                                    justifyContent: "center",
+                                    fontSize: "1.5rem",
+                                    lineHeight: 1,
                                 }}
-                                priority
-                            />
-                        </a>
+                            >
+                                ‹
+                            </button>
 
-                        {/* Right Arrow */}
-                        <button
-                            type="button"
-                            onClick={goNext}
-                            className="btn btn-outline-light"
-                            aria-label="Next video"
-                            style={{
-                                width: 48,
-                                height: 48,
-                                borderRadius: 999,
-                                display: "flex",
-                                alignItems: "center",
-                                justifyContent: "center",
-                                fontSize: "1.75rem",
-                                lineHeight: 1,
-                            }}
-                        >
-                            ›
-                        </button>
-                    </div>
+                            <a
+                                href={YT_CHANNEL_URL}
+                                target="_blank"
+                                rel="noopener noreferrer"
+                                aria-label="Visit Pastor Pilot YouTube channel"
+                                className={styles.ytChannel}
+                            >
+                                <span className={styles.ytAvatar}>
+                                    <Image
+                                        src="https://altitudeimagingvideos.b-cdn.net/PastorPilot.png"
+                                        alt="Pastor Pilot YouTube Channel"
+                                        width={64}
+                                        height={64}
+                                        style={{ width: "100%", height: "100%", objectFit: "cover" }}
+                                        priority
+                                    />
+                                </span>
+                                <span className={styles.ytLabel}>Pastor Pilot</span>
+                            </a>
 
-                    <div className="text-center text-secondary mb-2">
-                        Video {videoIndex + 1} of {YT_VIDEO_IDS.length}
-                    </div>
+                            <button
+                                type="button"
+                                onClick={goNext}
+                                className="btn btn-outline-light"
+                                aria-label="Next video"
+                                style={{
+                                    width: 44,
+                                    height: 44,
+                                    borderRadius: 999,
+                                    display: "flex",
+                                    alignItems: "center",
+                                    justifyContent: "center",
+                                    fontSize: "1.5rem",
+                                    lineHeight: 1,
+                                }}
+                            >
+                                ›
+                            </button>
+                        </div>
 
-                    <div className="ratio ratio-16x9">
-                        {isMounted ? (
-                            <iframe
-                                className="w-100 rounded"
-                                src={ytEmbedUrl}
-                                title="Pastor Pilot video"
-                                allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
-                                allowFullScreen
-                            />
-                        ) : (
-                            <div className="w-100 rounded bg-black" />
-                        )}
+                        <div className="text-center text-secondary mb-3" style={{ fontSize: "0.95rem" }}>
+                            Video {videoIndex + 1} of {YT_VIDEO_IDS.length}
+                        </div>
+
+                        {/* smaller framed video */}
+                        <div className={styles.ytFrame}>
+                            <div className={styles.ytRatio}>
+                                {isMounted ? (
+                                    <iframe
+                                        className={styles.ytIframe}
+                                        src={ytEmbedUrl}
+                                        title="Pastor Pilot video"
+                                        allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+                                        allowFullScreen
+                                    />
+                                ) : (
+                                    <div className={styles.ytSkeleton} />
+                                )}
+                            </div>
+                        </div>
                     </div>
                 </div>
             </section>
 
-            <section id="home">
-                <header
-                    className="position-relative d-flex align-items-center justify-content-center"
-                    style={{
-                        background: "rgba(0, 0, 0, 0.8)",
-                        height: "100vh",
-                        color: "#fff",
-                        zIndex: 10,
-                        overflow: "hidden",
-                    }}
-                >
-                    <video
-                        autoPlay
-                        loop
-                        muted
-                        playsInline
-                        className={styles.videoBackground}
-                    >
-                        <source
-                            src="https://altitudeimagingvideos.b-cdn.net/AltitudeLoop.m4v"
-                            type="video/mp4"
-                        />
-                        Your browser does not support the video tag.
-                    </video>
 
-                    <div
-                        className={`text-center position-relative ${styles.frostedGlass}`}
-                        style={{ zIndex: 2 }}
-                    >
-                        <h1 className="display-4 mb-5">See More. Know More. Do More.</h1>
+            {/* ✅ HERO: full-width, headline + 2 cards + centered CTA/socials */}
+            <section id="home" className="py-4">
+                <div className={`container-fluid ${styles.heroFluid}`}>
+                    <div className={styles.heroStackWide}>
+                        <video autoPlay loop muted playsInline className={styles.heroBgVideo}>
+                            <source
+                                src="https://altitudeimagingvideos.b-cdn.net/AltitudeLoop.m4v"
+                                type="video/mp4"
+                            />
+                            Your browser does not support the video tag.
+                        </video>
 
-                        <p className="lead mb-5 text-xl md:text-2xl lg:text-3xl">
-                            Premium aviation media that turns aircraft, training, and experiences
-                            into demand.
-                            <br />
-                            Altitude Imaging helps flight schools, dealers, charter operators, and
-                            aviation brands stand out with cinematic aerials, on-ground production,
-                            <br />
-                            and scroll-stopping social content.
-                            <br />
-                            Crafted to make prospects feel the flight before they ever book.
-                        </p>
+                        <div className={styles.heroShade} />
 
-                        <div className="d-flex justify-content-center gap-3 mb-4">
-                            <button
-                                onClick={() =>
-                                    window.open(
-                                        "https://altitudeimaging.hbportal.co/public/682a5bb52c86d7002408cd0f",
-                                        "_blank",
-                                        "noopener,noreferrer"
-                                    )
-                                }
-                                className="btn btn-outline-light text-3xl px-9 py-6 rounded-lg shadow-lg hover:scale-105 transition-all"
-                            >
-                                View Pricing
-                            </button>
-                        </div>
+                        <div className={styles.heroWideContent}>
+                            {/* Headline */}
+                            <h1 className={`${styles.heroHeadlineWide} ${styles.reveal2}`}>
+                                SEE MORE. KNOW MORE. DO MORE.
+                            </h1>
 
-                        <div className="d-flex justify-content-center gap-3 mb-3">
-                            <Link
-                                href="/videoedits"
-                                className="btn btn-outline-light text-3xl px-9 py-6 rounded-lg shadow-lg hover:scale-105 transition-all"
-                            >
-                                View Content
-                            </Link>
-                        </div>
+                            <div className={styles.heroCardsRow}>
+                                {/* LEFT CARD */}
+                                <div className={`${styles.heroMiniCard} ${styles.reveal3}`}>
+                                    <div className={styles.cardInner}>
+                                        <div className={styles.cardLabel}>The Outcome</div>
 
-                        <p className="text-light mb-3" style={{ fontSize: "1.5rem" }}>
-                            Visit our socials!
-                        </p>
+                                        <div className={styles.cardBig}>
+                                            Demand-driven aviation media.
+                                        </div>
 
-                        <div className="d-flex justify-content-center gap-4">
-                            {[
-                                {
-                                    href: "https://www.facebook.com/altitudeimagingofficial/",
-                                    icon: "facebook",
-                                },
-                                {
-                                    href: "https://www.instagram.com/altitudeimagingofficial/",
-                                    icon: "instagram",
-                                },
-                            ].map((social, i) => (
-                                <a
-                                    key={i}
-                                    href={social.href}
-                                    target="_blank"
-                                    rel="noopener noreferrer"
-                                    className="text-white"
-                                    style={{
-                                        fontSize: "2.5rem",
-                                        transition: "transform 0.2s ease-in-out",
-                                    }}
-                                    onMouseEnter={(e) =>
-                                        (e.currentTarget.style.transform = "scale(1.2)")
-                                    }
-                                    onMouseLeave={(e) =>
-                                        (e.currentTarget.style.transform = "scale(1)")
-                                    }
-                                >
-                                    <i className={`bi bi-${social.icon}`}></i>
-                                </a>
-                            ))}
+                                        <div className={styles.cardDivider} />
+
+                                        <div className={styles.cardSmall}>
+                                            Premium content that turns aircraft, training, and experiences into bookings.
+                                        </div>
+                                    </div>
+                                </div>
+
+                                {/* RIGHT CARD */}
+                                <div className={`${styles.heroMiniCard} ${styles.reveal4}`}>
+                                    <div className={styles.cardInner}>
+                                        <div className={styles.cardLabel}>Altitude Imaging helps</div>
+
+                                        <ul className={styles.helpList}>
+                                            <li><span className={styles.check}>✓</span> Flight schools</li>
+                                            <li><span className={styles.check}>✓</span> Dealers</li>
+                                            <li><span className={styles.check}>✓</span> Charter operators</li>
+                                            <li><span className={styles.check}>✓</span> Aviation brands</li>
+                                        </ul>
+
+                                        <div className={styles.cardDivider} />
+
+                                        <div className={styles.cardSmall}>
+                                            Cinematic aerials • on-ground production • scroll-stopping social content
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+
+
+                            {/* Centered CTA */}
+                            <div className={styles.heroCtaCenter}>
+                                <Link href="/videoedits" className={`btn ${styles.primaryBtn}`}>
+                                    View Content
+                                </Link>
+                            </div>
+
+                            {/* Centered socials */}
+                            <div className={styles.heroSocialCenter}>
+                                <div className={styles.socialLabel}>Visit our socials</div>
+                                <div className={styles.socialIconsCenter}>
+                                    {[
+                                        { href: "https://www.facebook.com/altitudeimagingofficial/", icon: "facebook" },
+                                        { href: "https://www.instagram.com/altitudeimagingofficial/", icon: "instagram" },
+                                    ].map((social, i) => (
+                                        <a
+                                            key={i}
+                                            href={social.href}
+                                            target="_blank"
+                                            rel="noopener noreferrer"
+                                            className={styles.socialIcon}
+                                            aria-label={social.icon}
+                                        >
+                                            <i className={`bi bi-${social.icon}`}></i>
+                                        </a>
+                                    ))}
+                                </div>
+                            </div>
                         </div>
                     </div>
-                </header>
+                </div>
             </section>
+
+
 
             {/* 👇 Companies Who Trust Us 👇 */}
             <section className="py-16 bg-dark text-white">
@@ -332,8 +304,6 @@ export default function Home() {
                 </div>
             </section>
 
-
-
             {/* 👇 Google Reviews Section 👇 */}
             <section className="text-white py-16">
                 <div className="container mx-auto max-w-6xl px-4">
@@ -377,8 +347,6 @@ export default function Home() {
                     </a>
                 </div>
             </section>
-
-
         </>
     );
 }

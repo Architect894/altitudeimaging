@@ -84,18 +84,6 @@ export default function Contact() {
                         ))}
                     </div>
 
-                    {/* ✅ HoneyBook Booking Link Opens in New Tab */}
-                    <button
-                        className="btn btn-primary px-5 py-3 fs-2 mt-3"
-                        onClick={() => window.open(
-                            'https://altitudeimaging.hbportal.co/public/682a5bb52c86d7002408cd0f',
-                            '_blank',
-                            'noopener,noreferrer'
-                        )}
-                    >
-                        View Pricing
-                    </button>
-
                 </div>
             </section>
         </PagesLayout>
