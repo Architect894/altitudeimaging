@@ -54,13 +54,14 @@ export default function DropMenu() {
                         />
                     </Link>
 
-                    <Link href="/videoedits" className="button-container py-1 px-3">
+                    <a
+                        href="https://www.notion.so/Work-with-us-2f5154c8e1ff806ea5d4c9c5ef8c47ad"
+                        target="_blank"
+                        rel="noopener noreferrer"
+                        className="button-container py-1 px-3"
+                    >
                         Content
-                    </Link>
-
-                    <Link href="/contact" className="button-container py-1 px-3">
-                        Get In Touch
-                    </Link>
+                    </a>
                 </div>
 
                 {/* Mobile Navigation Bar (Closed State) */}

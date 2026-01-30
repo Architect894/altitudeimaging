@@ -210,10 +210,17 @@ export default function Home() {
 
                             {/* Centered CTA */}
                             <div className={styles.heroCtaCenter}>
-                                <Link href="/videoedits" className={`btn ${styles.primaryBtn}`}>
-                                    View Content
-                                </Link>
+                                <a
+                                    href="https://www.notion.so/Work-with-us-2f5154c8e1ff806ea5d4c9c5ef8c47ad"
+                                    target="_blank"
+                                    rel="noopener noreferrer"
+                                    className={styles.ctaButton}
+                                >
+                                    <span className={styles.ctaText}>Work With Us</span>
+                                    <span className={styles.ctaIcon} aria-hidden="true">→</span>
+                                </a>
                             </div>
+
 
                             {/* Centered socials */}
                             <div className={styles.heroSocialCenter}>
