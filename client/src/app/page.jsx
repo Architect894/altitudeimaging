@@ -154,7 +154,7 @@ export default function Home() {
                     <div className={styles.heroStackWide}>
                         <video autoPlay loop muted playsInline className={styles.heroBgVideo}>
                             <source
-                                src="https://altitudeimagingvideos.b-cdn.net/AltitudeLoop.m4v"
+                                src="https://altitudeimagingvideos.b-cdn.net/LOOP%202.m4v"
                                 type="video/mp4"
                             />
                             Your browser does not support the video tag.
@@ -276,6 +276,10 @@ export default function Home() {
                                 {
                                     src: "https://altitudeimagingvideos.b-cdn.net/tecnamlogo.png",
                                     alt: "Tecnam Logo",
+                                },
+                                {
+                                    src: "https://altitudeimagingvideos.b-cdn.net/Sling-Aircraft.png",
+                                    alt: "Sling Logo",
                                 },
                             ].map((logo, i) => (
                                 <div className="logoItem" key={`logo-a-${i}`}>

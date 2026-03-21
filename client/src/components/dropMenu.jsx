@@ -60,7 +60,7 @@ export default function DropMenu() {
                         rel="noopener noreferrer"
                         className="button-container py-1 px-3"
                     >
-                        Content
+                        Work With Us
                     </a>
                 </div>
 

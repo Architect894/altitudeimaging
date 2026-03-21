@@ -194,7 +194,7 @@ body.dark-theme {
     width: 100%;
     padding: 12px 0;
     border-radius: 16px;
-    background: rgba(255, 255, 255, 0.04);
+    background: rgba(25, 45, 65, 0.5);
     border: 1px solid rgba(255, 255, 255, 0.10);
 }
 
@@ -231,10 +231,22 @@ body.dark-theme {
     transition: transform 0.2s ease, opacity 0.2s ease, filter 0.2s ease;
 }
 
+/* Make Tecnam and Sling logos lighter by default */
+.logoItem:nth-child(4) img,
+.logoItem:nth-child(5) img {
+    filter: grayscale(100%) brightness(1.4);
+}
+
 .logoItem img:hover {
-    transform: scale(1.06);
+    transform: scale(1.12) translateY(-4px);
     opacity: 1;
-    filter: grayscale(0%);
+    filter: grayscale(0%) brightness(1.15) drop-shadow(0 8px 20px rgba(255, 255, 255, 0.3));
+}
+
+/* Make Tecnam and Sling logos even brighter/whiter on hover */
+.logoItem:nth-child(4) img:hover,
+.logoItem:nth-child(5) img:hover {
+    filter: grayscale(0%) brightness(2.4) drop-shadow(0 8px 20px rgba(255, 255, 255, 0.3));
 }
 
 @keyframes marquee {
