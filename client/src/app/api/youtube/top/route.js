@@ -8,7 +8,7 @@
 
 const API = "https://www.googleapis.com/youtube/v3";
 
-const CHANNEL_HANDLE = process.env.YOUTUBE_CHANNEL_HANDLE || "@PastorPilot9116";
+const CHANNEL_HANDLE = process.env.YOUTUBE_CHANNEL_HANDLE || "@PastorPilot";
 const CHANNEL_ID = process.env.YOUTUBE_CHANNEL_ID || "";
 
 // How many recent uploads to consider before ranking them by views.

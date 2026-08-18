@@ -6,7 +6,7 @@ import "bootstrap/dist/css/bootstrap.min.css";
 import "../styles/global.css";
 import styles from "../styles/styles.module.css";
 
-const YT_CHANNEL_URL = "https://www.youtube.com/@PastorPilot9116";
+const YT_CHANNEL_URL = "https://www.youtube.com/@PastorPilot";
 const WORK_WITH_US_URL =
     "https://www.notion.so/Work-with-us-2f5154c8e1ff806ea5d4c9c5ef8c47ad";
 const GOOGLE_REVIEWS_URL =
