@@ -1,146 +1,169 @@
 "use client";
 
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import Link from "next/link";
 import Image from "next/image";
 import "../styles/global.css";
-import "../styles/styles.module.css";
+
+const WORK_WITH_US_URL =
+    "https://www.notion.so/Work-with-us-2f5154c8e1ff806ea5d4c9c5ef8c47ad";
+
+const NAV_LINKS = [
+    { href: "/#work", label: "The Work" },
+    { href: "/#youtube-feature", label: "Channel" },
+    { href: "/#reviews", label: "Reviews" },
+];
 
 export default function DropMenu() {
     const [isMenuOpen, setIsMenuOpen] = useState(false);
+    const [isStuck, setIsStuck] = useState(false);
 
-    const toggleMobileMenu = () => {
-        setIsMenuOpen((prev) => !prev);
-    };
-
-    const handlePastorPilotClick = () => {
-        window.open(
-            "https://www.youtube.com/@PastorPilot9116",
-            "_blank",
-            "noopener,noreferrer"
-        );
-    };
+    // The bar stays transparent over the hero and frosts once the page moves
+    useEffect(() => {
+        const onScroll = () => setIsStuck(window.scrollY > 12);
+        onScroll();
+        window.addEventListener("scroll", onScroll, { passive: true });
+        return () => window.removeEventListener("scroll", onScroll);
+    }, []);
 
     return (
-        <header
-            className="menu-container"
-            style={{
-                position: "sticky",
-                top: "0",
-                zIndex: "50",
-                backgroundColor: "rgba(75, 94, 201, 0.23)",
-                backdropFilter: "blur(5px)",
-                boxShadow: "0 4px 10px rgba(0, 0, 0, 0.5)",
-                padding: "10px 20px",
-            }}
-        >
+        <header className={`menu-container ${isStuck ? "is-stuck" : ""}`}>
             <nav
-                className="mx-auto flex max-w-8xl items-center justify-between p-0 lg:px-8"
-                aria-label="Global"
+                className="mx-auto d-flex align-items-center justify-content-between"
+                style={{ maxWidth: "1200px", padding: "10px 24px", gap: "24px" }}
+                aria-label="Main"
             >
-                {/* Desktop Navigation Links */}
-                <div className="hidden lg:flex w-full justify-center items-center space-x-6">
-                    <Link
-                        href="/"
-                        className="button-container py-1 px-3 text-white hover:text-yellow-400"
-                    >
-                        <Image
-                            src="/altitudehome.png"
-                            alt="Home"
-                            width={110}
-                            height={110}
-                            style={{ width: "auto", height: "110px" }}
-                            priority
-                        />
-                    </Link>
+                <Link href="/" aria-label="Altitude Imaging home" style={{ lineHeight: 0 }}>
+                    <Image
+                        src="/altitudehome.png"
+                        alt="Altitude Imaging"
+                        width={220}
+                        height={88}
+                        style={{
+                            width: "auto",
+                            height: isStuck ? "66px" : "92px",
+                            transition: "height 320ms cubic-bezier(0.22,0.61,0.36,1)",
+                        }}
+                        priority
+                    />
+                </Link>
+
+                {/* Desktop links */}
+                <div className="d-none d-lg-flex align-items-center" style={{ gap: "32px" }}>
+                    {NAV_LINKS.map((link) => (
+                        <Link key={link.href} href={link.href} className="nav-link-underline">
+                            {link.label}
+                        </Link>
+                    ))}
 
                     <a
-                        href="https://www.notion.so/Work-with-us-2f5154c8e1ff806ea5d4c9c5ef8c47ad"
+                        href={WORK_WITH_US_URL}
                         target="_blank"
                         rel="noopener noreferrer"
-                        className="button-container py-1 px-3"
+                        style={{
+                            display: "inline-flex",
+                            alignItems: "center",
+                            gap: "8px",
+                            padding: "10px 20px",
+                            borderRadius: "999px",
+                            fontWeight: 700,
+                            fontSize: "0.95rem",
+                            textDecoration: "none",
+                            color: "#04121e",
+                            background: "linear-gradient(135deg, #7fe0ff, #38bdf8 45%, #818cf8)",
+                            boxShadow: "0 14px 30px -16px rgba(56,189,248,0.9)",
+                        }}
                     >
                         Work With Us
                     </a>
                 </div>
 
-                {/* Mobile Navigation Bar (Closed State) */}
-                <div className="flex lg:hidden w-full items-center justify-between px-2 py-1 h-[84px]">
-                    {/* Logo on the Left */}
-                    <Link href="/">
-                        <Image
-                            src="/altitudehome.png"
-                            alt="Home"
-                            width={120}
-                            height={60}
-                            style={{ width: "auto", height: "60px" }}
-                            className="h-10 w-auto transition-transform duration-300 ease-in-out hover:scale-105"
-                            priority
-                        />
-                    </Link>
-
-                    {/* Hamburger Menu Button on the Right */}
-                    <button
-                        type="button"
-                        onClick={toggleMobileMenu}
-                        className="inline-flex items-center justify-center rounded-md p-2.5 text-gray-400"
-                        aria-label="Open main menu"
+                {/* Mobile toggle */}
+                <button
+                    type="button"
+                    onClick={() => setIsMenuOpen((open) => !open)}
+                    className="d-inline-flex d-lg-none align-items-center justify-content-center"
+                    style={{
+                        width: "44px",
+                        height: "44px",
+                        borderRadius: "14px",
+                        background: "rgba(255,255,255,0.06)",
+                        border: "1px solid rgba(255,255,255,0.14)",
+                        color: "var(--ai-text)",
+                    }}
+                    aria-label={isMenuOpen ? "Close main menu" : "Open main menu"}
+                    aria-expanded={isMenuOpen}
+                >
+                    <svg
+                        width="22"
+                        height="22"
+                        fill="none"
+                        viewBox="0 0 24 24"
+                        strokeWidth="1.8"
+                        stroke="currentColor"
+                        aria-hidden="true"
                     >
-                        <svg
-                            className="h-6 w-6"
-                            fill="none"
-                            viewBox="0 0 24 24"
-                            strokeWidth="1.5"
-                            stroke="currentColor"
-                            aria-hidden="true"
-                        >
-                            <path
-                                strokeLinecap="round"
-                                strokeLinejoin="round"
-                                d="M3.75 6.75h16.5M3.75 12h16.5m-16.5 5.25h16.5"
-                            />
-                        </svg>
-                    </button>
-                </div>
+                        {isMenuOpen ? (
+                            <path strokeLinecap="round" strokeLinejoin="round" d="M6 6l12 12M18 6L6 18" />
+                        ) : (
+                            <path strokeLinecap="round" strokeLinejoin="round" d="M3.75 7h16.5M3.75 12h16.5m-16.5 5h16.5" />
+                        )}
+                    </svg>
+                </button>
             </nav>
 
-            {/* Mobile Navigation Menu */}
+            {/* Mobile menu */}
             {isMenuOpen && (
-                <div className="lg:hidden bg-blue-1000 text-white py-6 px-4 flex flex-col items-center text-center space-y-4 animate-dropdown">
+                <div
+                    className="d-lg-none animate-dropdown"
+                    style={{
+                        padding: "8px 24px 24px",
+                        display: "flex",
+                        flexDirection: "column",
+                        gap: "4px",
+                        borderTop: "1px solid var(--ai-line)",
+                        background: "rgba(5,8,15,0.92)",
+                        backdropFilter: "blur(18px)",
+                        WebkitBackdropFilter: "blur(18px)",
+                    }}
+                >
+                    {NAV_LINKS.map((link) => (
+                        <Link
+                            key={link.href}
+                            href={link.href}
+                            onClick={() => setIsMenuOpen(false)}
+                            style={{
+                                padding: "14px 4px",
+                                color: "var(--ai-text)",
+                                textDecoration: "none",
+                                fontWeight: 600,
+                                borderBottom: "1px solid rgba(255,255,255,0.06)",
+                            }}
+                        >
+                            {link.label}
+                        </Link>
+                    ))}
 
-                    {/* Content link */}
                     <a
-                        href="https://www.notion.so/Work-with-us-2f5154c8e1ff806ea5d4c9c5ef8c47ad"
+                        href={WORK_WITH_US_URL}
                         target="_blank"
                         rel="noopener noreferrer"
-                        className="button-container py-1 px-3 text-white hover:text-yellow-400 transition-all"
                         onClick={() => setIsMenuOpen(false)}
+                        style={{
+                            marginTop: "14px",
+                            padding: "14px 20px",
+                            borderRadius: "999px",
+                            textAlign: "center",
+                            fontWeight: 700,
+                            textDecoration: "none",
+                            color: "#04121e",
+                            background: "linear-gradient(135deg, #7fe0ff, #38bdf8 45%, #818cf8)",
+                        }}
                     >
                         Work With Us
                     </a>
-
-                    {/* Pastor Pilot YouTube Logo Button - Mobile */}
-                    <a
-                        href="https://www.notion.so/Work-with-us-2f5154c8e1ff806ea5d4c9c5ef8c47ad"
-                        target="_blank"
-                        rel="noopener noreferrer"
-                        onClick={() => setIsMenuOpen(false)}
-                        className="button-container py-2 px-4 flex items-center justify-center hover:scale-105 transition-transform"
-                        aria-label="Work With Us"
-                    >
-                        <Image
-                            src="https://altitudeimagingvideos.b-cdn.net/PastorPilot.png"
-                            alt="Work With Us"
-                            width={160}
-                            height={50}
-                            style={{ width: "auto", height: "50px" }}
-                        />
-                    </a>
-
                 </div>
             )}
-
         </header>
     );
 }
-

@@ -2,212 +2,240 @@
 @tailwind components;
 @tailwind utilities;
 
-@font-face {
-    font-family: 'Montserrat';
-    src: url('/fonts/montserrat/Montserrat-Regular.ttf') format('truetype');
-    font-weight: normal;
-    font-style: normal;
+/* =========================================================
+   Altitude Imaging — design tokens
+   One place to retune the palette and rhythm of the whole site.
+   ========================================================= */
+:root {
+    /* surfaces */
+    --ai-bg: #05080f;
+    --ai-bg-elev: #0a1120;
+    --ai-surface: rgba(255, 255, 255, 0.045);
+    --ai-surface-2: rgba(255, 255, 255, 0.075);
+    --ai-line: rgba(255, 255, 255, 0.10);
+    --ai-line-strong: rgba(255, 255, 255, 0.20);
+
+    /* ink */
+    --ai-text: #eaf1fb;
+    --ai-muted: rgba(226, 236, 250, 0.68);
+    --ai-faint: rgba(226, 236, 250, 0.45);
+
+    /* accent — sky to horizon */
+    --ai-accent: #38bdf8;
+    --ai-accent-2: #818cf8;
+    --ai-accent-soft: rgba(56, 189, 248, 0.14);
+
+    /* shape */
+    --ai-radius-sm: 12px;
+    --ai-radius: 20px;
+    --ai-radius-lg: 28px;
+    --ai-pill: 999px;
+
+    /* depth + motion */
+    --ai-shadow: 0 24px 60px -22px rgba(0, 0, 0, 0.85);
+    --ai-shadow-lg: 0 40px 90px -30px rgba(0, 0, 0, 0.9);
+    --ai-ease: cubic-bezier(0.22, 0.61, 0.36, 1);
+
+    /* vertical rhythm */
+    --ai-section: clamp(64px, 7.5vw, 112px);
+    --ai-shell: 1200px;
+
+    /* typography (wired up by next/font in layout.jsx) */
+    /* The fallbacks matter: /contact and /videoedits are Pages Router routes and
+       never see next/font's variables, and a bare var() would void the whole rule. */
+    --ai-font-body: var(--font-body, ui-sans-serif), system-ui, -apple-system, "Segoe UI", Roboto, sans-serif;
+    --ai-font-display: var(--font-display, ui-sans-serif), var(--ai-font-body);
 }
 
 * {
-    font-family: 'Montserrat', sans-serif !important;
+    font-family: var(--ai-font-body);
 }
 
-.hover-effect:hover {
-    color: rgb(194, 253, 209);
-    background-color: rgb(70, 166, 255);
-    transition: color 0.3s, background-color 0.3s;
-    border-radius: 80px;
-}
-
-.custom-bg-opacity {
-    background-color: rgba(0, 153, 255, 0.158);
-    padding: 4px;
-    border-radius: 20px;
-}
-
-.custom-video {
-    height: 15%;
-}
-
-@media (max-width: 768px) {
-    .custom-video {
-        height: 30%;
-    }
-}
-
-@media (max-width: 480px) {
-    .custom-video {
-        height: 20%;
-
-    }
-}
-
-.custom-bg {
-    background-color: rgba(37, 26, 13, 0.788);
-    padding: 30px;
-    border-radius: 10px;
-}
-
-.custom-bg-buttons {
-    padding: 2px;
-    color: rgb(124, 242, 250);
-    border-radius: 80px;
-}
-
-.custombg {
-    background-color: rgba(0, 21, 36, 0.788);
-    padding: 30px;
-    border-radius: 10px;
+html {
+    scroll-behavior: smooth;
+    /* keeps anchor targets clear of the sticky header */
+    scroll-padding-top: 96px;
 }
 
 body {
-    background-color: #121212;
-    color: #ffffff;
+    background-color: var(--ai-bg);
+    color: var(--ai-text);
+    -webkit-font-smoothing: antialiased;
+    text-rendering: optimizeLegibility;
 }
 
+/* Ambient light: soft auras fixed behind the page so scrolling reads as one
+   continuous space rather than a stack of separate blocks. */
 .custom-layout {
-    background-color: #0e20368a;
-    color: #ffffff;
+    position: relative;
+    background-color: var(--ai-bg);
+    color: var(--ai-text);
+    overflow-x: hidden;
 }
 
-body.dark-theme {
-    background-color: #152436;
-    color: #ffffff;
-    transition: background-color 0.3s ease;
+.custom-layout::before {
+    content: "";
+    position: fixed;
+    inset: 0;
+    z-index: -1;
+    pointer-events: none;
+    background:
+        radial-gradient(900px 620px at 12% -8%, rgba(56, 189, 248, 0.16), transparent 62%),
+        radial-gradient(760px 560px at 92% 12%, rgba(129, 140, 248, 0.13), transparent 60%),
+        radial-gradient(1100px 800px at 50% 108%, rgba(56, 189, 248, 0.08), transparent 65%),
+        linear-gradient(180deg, #05080f 0%, #070d18 45%, #05080f 100%);
 }
 
-.commercial-container {
-    border-radius: 10px;
-    background-color: #ffffff2f;
-    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.8);
-    padding: 10px;
-    transition: background-color 0.3s ease, box-shadow 0.3s ease;
+h1,
+h2,
+h3,
+h4,
+.display-1,
+.display-2,
+.display-3,
+.display-4,
+.display-5 {
+    font-family: var(--ai-font-display);
+    letter-spacing: -0.02em;
 }
 
-.commercial-container:hover {
-    background-color: #ffffff27;
+::selection {
+    background: rgba(56, 189, 248, 0.32);
+    color: #fff;
 }
 
-.upc-logo {
-    height: 100px;
+/* Consistent focus ring across the site */
+a:focus-visible,
+button:focus-visible {
+    outline: 2px solid var(--ai-accent);
+    outline-offset: 3px;
+    border-radius: 6px;
 }
 
-.logo-container {
-    height: 200px;
-    width: 200px;
-    background-color: #ffffff;
-    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.5);
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    border-radius: 10px;
-    overflow: hidden;
+/* =========================================================
+   Scroll reveal — content eases in as it enters the viewport
+   ========================================================= */
+[data-reveal] {
+    opacity: 0;
+    transform: translateY(22px);
+    transition:
+        opacity 780ms var(--ai-ease),
+        transform 780ms var(--ai-ease);
+    transition-delay: var(--reveal-delay, 0ms);
+    will-change: opacity, transform;
 }
 
-.sr-only {
-    height: 90%;
-    width: auto;
+[data-reveal].is-in {
+    opacity: 1;
+    transform: none;
 }
 
+@media (prefers-reduced-motion: reduce) {
+
+    html {
+        scroll-behavior: auto;
+    }
+
+    [data-reveal] {
+        opacity: 1 !important;
+        transform: none !important;
+        transition: none !important;
+    }
+}
+
+/* =========================================================
+   Header / navigation
+   ========================================================= */
 .menu-container {
-    border-radius: 10px;
-    background-color: #ffffff52;
-    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.5);
-    padding: 0px;
-    backdrop-filter: blur(5px);
-    -webkit-backdrop-filter: blur(5px);
-    transition: background-color 0.3s ease, box-shadow 0.3s ease, backdrop-filter 0.3s ease;
-}
-
-
-/* Sticky functionality for DropMenu */
-.sticky-menu {
     position: sticky;
     top: 0;
-    left: 0;
-    width: 100%;
-    background-color: rgba(2, 41, 87, 0.9);
-    z-index: 1000;
-    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.8);
-    border-radius: 0;
-    /* Remove rounded edges for sticky state */
+    z-index: 50;
+    background: transparent;
+    border-bottom: 1px solid transparent;
+    transition:
+        background 320ms var(--ai-ease),
+        border-color 320ms var(--ai-ease),
+        backdrop-filter 320ms var(--ai-ease);
 }
 
-.menu-container:hover {
-    background-color: #02356e52;
-    backdrop-filter: blur(10px);
-    -webkit-backdrop-filter: blur(10px);
-    box-shadow: 0 6px 15px rgba(0, 0, 0, 0.9);
+/* Applied once the visitor scrolls away from the top of the page */
+.menu-container.is-stuck {
+    background: rgba(5, 8, 15, 0.72);
+    border-bottom-color: var(--ai-line);
+    backdrop-filter: blur(18px) saturate(140%);
+    -webkit-backdrop-filter: blur(18px) saturate(140%);
+    box-shadow: 0 18px 40px -30px rgba(0, 0, 0, 0.9);
 }
 
-.button-container {
+.nav-link-underline {
     position: relative;
-    display: inline-block;
-    font-size: large;
-    color: rgb(255, 255, 255);
+    color: var(--ai-muted);
     text-decoration: none;
-    background: none;
-    border: none;
-    padding: 0;
-    cursor: pointer;
-    transition: color 0.3s ease;
+    font-weight: 600;
+    font-size: 0.98rem;
+    transition: color 220ms var(--ai-ease);
 }
 
-.altitude-container {
-    position: relative;
-    display: inline-block;
-    font-size: large;
-    color: rgb(255, 255, 255);
-    text-decoration: none;
-    background: none;
-    border: none;
-    padding: 0;
-    cursor: pointer;
+.nav-link-underline:hover {
+    color: var(--ai-text);
 }
 
-.button-container:hover {
-    color: #ffffff;
-    transform: scale(1.03);
-}
-
-.button-container::after {
+.nav-link-underline::after {
     content: "";
     position: absolute;
     left: 0;
-    bottom: -2px;
+    bottom: -6px;
     width: 100%;
-    height: 2px;
-    background: rgb(2, 169, 211);
+    height: 1.5px;
+    border-radius: 2px;
+    background: linear-gradient(90deg, var(--ai-accent), var(--ai-accent-2));
     transform: scaleX(0);
     transform-origin: left;
-    transition: transform 0.3s ease;
+    transition: transform 300ms var(--ai-ease);
 }
 
-.button-container:hover::after {
+.nav-link-underline:hover::after {
     transform: scaleX(1);
 }
 
+@keyframes menuDrop {
+    from {
+        opacity: 0;
+        transform: translateY(-10px);
+    }
+
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+.animate-dropdown {
+    animation: menuDrop 320ms var(--ai-ease) both;
+}
+
+/* =========================================================
+   Client logo marquee
+   ========================================================= */
 .logoMarquee {
     position: relative;
     overflow: hidden;
     width: 100%;
-    padding: 12px 0;
-    border-radius: 16px;
-    background: rgba(25, 45, 65, 0.5);
-    border: 1px solid rgba(255, 255, 255, 0.10);
+    padding: 18px 0;
+    /* fade the ends so logos drift in and out instead of clipping */
+    -webkit-mask-image: linear-gradient(90deg, transparent, #000 8%, #000 92%, transparent);
+    mask-image: linear-gradient(90deg, transparent, #000 8%, #000 92%, transparent);
 }
 
 .logoTrack {
     display: flex;
     align-items: center;
     width: max-content;
-    gap: 48px;
-    animation: marquee 28s linear infinite;
+    gap: 64px;
+    animation: marquee 34s linear infinite;
     will-change: transform;
 }
 
-/* Optional: pause on hover */
 .logoMarquee:hover .logoTrack {
     animation-play-state: paused;
 }
@@ -216,37 +244,24 @@ body.dark-theme {
     display: flex;
     align-items: center;
     justify-content: center;
-    height: 80px;
-    /* controls row height */
+    height: 74px;
     padding: 0 8px;
 }
 
 .logoItem img {
     height: 100%;
     width: auto;
-    max-height: 80px;
+    max-height: 74px;
     object-fit: contain;
-    filter: grayscale(100%);
-    opacity: 0.9;
-    transition: transform 0.2s ease, opacity 0.2s ease, filter 0.2s ease;
-}
-
-/* Make Tecnam and Sling logos lighter by default */
-.logoItem:nth-child(4) img,
-.logoItem:nth-child(5) img {
-    filter: grayscale(100%) brightness(1.4);
+    filter: grayscale(100%) brightness(1.6);
+    opacity: 0.55;
+    transition: opacity 300ms var(--ai-ease), filter 300ms var(--ai-ease), transform 300ms var(--ai-ease);
 }
 
 .logoItem img:hover {
-    transform: scale(1.12) translateY(-4px);
     opacity: 1;
-    filter: grayscale(0%) brightness(1.15) drop-shadow(0 8px 20px rgba(255, 255, 255, 0.3));
-}
-
-/* Make Tecnam and Sling logos even brighter/whiter on hover */
-.logoItem:nth-child(4) img:hover,
-.logoItem:nth-child(5) img:hover {
-    filter: grayscale(0%) brightness(2.4) drop-shadow(0 8px 20px rgba(255, 255, 255, 0.3));
+    filter: grayscale(0%) brightness(1.15);
+    transform: translateY(-3px);
 }
 
 @keyframes marquee {
@@ -255,23 +270,72 @@ body.dark-theme {
     }
 
     100% {
-        /* Move left by half the track since we duplicated the logos */
+        /* the track is duplicated, so half a loop is a seamless loop */
         transform: translateX(-50%);
     }
 }
 
-/* Responsive tweaks */
+@media (prefers-reduced-motion: reduce) {
+    .logoTrack {
+        animation: none;
+        flex-wrap: wrap;
+        justify-content: center;
+        width: 100%;
+    }
+}
+
 @media (max-width: 768px) {
     .logoTrack {
-        gap: 28px;
-        animation-duration: 22s;
+        gap: 36px;
+        animation-duration: 24s;
     }
 
     .logoItem {
-        height: 56px;
+        height: 52px;
     }
 
     .logoItem img {
-        max-height: 56px;
+        max-height: 52px;
     }
+}
+
+/* =========================================================
+   Shared helpers still used by /videoedits and /contact
+   ========================================================= */
+.frostedGlass,
+.custom-bg,
+.custombg {
+    background: var(--ai-surface);
+    border: 1px solid var(--ai-line);
+    border-radius: var(--ai-radius);
+    padding: 2rem;
+    box-shadow: var(--ai-shadow);
+    backdrop-filter: blur(18px);
+    -webkit-backdrop-filter: blur(18px);
+}
+
+.commercial-container {
+    border-radius: var(--ai-radius);
+    background: var(--ai-surface);
+    border: 1px solid var(--ai-line);
+    box-shadow: var(--ai-shadow);
+    padding: 12px;
+    transition: background 300ms var(--ai-ease), border-color 300ms var(--ai-ease);
+}
+
+.commercial-container:hover {
+    background: var(--ai-surface-2);
+    border-color: var(--ai-line-strong);
+}
+
+.logo-container {
+    height: 200px;
+    width: 200px;
+    background-color: #ffffff;
+    box-shadow: var(--ai-shadow);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border-radius: var(--ai-radius);
+    overflow: hidden;
 }

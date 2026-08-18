@@ -1,83 +1,148 @@
 "use client";
+
 import React from "react";
+import Link from "next/link";
 import "bootstrap/dist/css/bootstrap.min.css";
-import styles from "../styles/styles.module.css"; // Adjust the path if necessary
 import "../styles/global.css";
-import Connections from "./connections";
+
+const SOCIALS = [
+    { href: "https://facebook.com/altitudeimagingofficial/", icon: "facebook", label: "Facebook" },
+    { href: "https://instagram.com/altitudeimagingofficial/", icon: "instagram", label: "Instagram" },
+];
+
+const linkStyle = {
+    color: "var(--ai-muted)",
+    textDecoration: "none",
+    fontSize: "0.98rem",
+};
 
 export default function Footer() {
     return (
         <footer
-            className="text-white py-5"
             style={{
-                backgroundColor: "rgb(12, 18, 49)", // Bright blue background color
-                fontFamily: "Quicksand",
+                position: "relative",
+                marginTop: "40px",
+                borderTop: "1px solid var(--ai-line)",
+                background: "linear-gradient(180deg, rgba(255,255,255,0.03), rgba(5,8,15,0.65))",
+                color: "var(--ai-text)",
+                padding: "clamp(48px, 6vw, 80px) 0 32px",
             }}
         >
-            <div className="container">
-                <div className="row">
-                    {/* Personal Branding Section */}
-                    <div className="col-md-4 text-center text-md-start mb-4 mb-md-0">
-                        <h3 className="text-white font-bold">Altitude Imaging</h3>
-                        <p>Your story with a unique angle.</p>
-                        <address className="mt-3">
-                            <p>
-                                <a href="mailto:sendittojelliott@gmail.com" className="text-white text-decoration-none">
-                                    jarred@altitudeimaging.org
-                                </a>
-                            </p>
-                            <p>
-                                <a href="tel:8706238220" className="text-white text-decoration-none font-bold">
-                                    (870) 623-8080
-                                </a>
-                            </p>
-                        </address>
+            <div style={{ maxWidth: "1200px", margin: "0 auto", padding: "0 24px" }}>
+                <div className="row g-5">
+                    {/* Brand */}
+                    <div className="col-12 col-md-5">
+                        <h3
+                            style={{
+                                fontFamily: "var(--ai-font-display)",
+                                fontWeight: 800,
+                                fontSize: "1.45rem",
+                                marginBottom: "10px",
+                            }}
+                        >
+                            Altitude Imaging
+                        </h3>
+                        <p style={{ color: "var(--ai-muted)", maxWidth: "38ch", lineHeight: 1.65 }}>
+                            Your story with a unique angle. By aviators, for aviators.
+                        </p>
+
+                        <div className="d-flex flex-column gap-2 mt-4">
+                            <a href="mailto:jarred@altitudeimaging.org" style={linkStyle}>
+                                jarred@altitudeimaging.org
+                            </a>
+                            <a href="tel:8706238080" style={{ ...linkStyle, fontWeight: 700, color: "var(--ai-text)" }}>
+                                (870) 623-8080
+                            </a>
+                        </div>
                     </div>
 
-                    {/* About Section */}
-                    <div className="col-md-4 text-center text-md-start">
-                        <h5 className="mb-0 font-bold text-center">About Me</h5>
-                        <p>
-                            We are Altitude Imaging. We&apos;re dedicated to helping businesses, communities, and creators stand out with 
-                            professional drone media and marketing solutions. From breathtaking aerial footage to event coverage and 
-                            strategic social media content, we bring your vision to life with high-quality production that makes an impact from every angle.
+                    {/* Explore */}
+                    <div className="col-6 col-md-3">
+                        <p
+                            style={{
+                                fontSize: "0.76rem",
+                                fontWeight: 700,
+                                letterSpacing: "0.16em",
+                                textTransform: "uppercase",
+                                color: "var(--ai-faint)",
+                                marginBottom: "16px",
+                            }}
+                        >
+                            Explore
                         </p>
-                        <p className="text-center text-light mt-4 mb-2" style={{ fontSize: "1.5rem" }}>Check our socials!</p>
-                        <div className="d-flex justify-content-center gap-4">
-                            {[
-                                { href: "https://facebook.com/altitudeimagingofficial/", icon: "facebook" },
-                                { href: "https://instagram.com/altitudeimagingofficial/", icon: "instagram" },
-                            ].map((social, i) => (
+                        <div className="d-flex flex-column gap-2">
+                            <Link href="/#work" style={linkStyle}>The work</Link>
+                            <Link href="/#youtube-feature" style={linkStyle}>Channel</Link>
+                            <Link href="/#reviews" style={linkStyle}>Reviews</Link>
+                            <a
+                                href="https://www.notion.so/Work-with-us-2f5154c8e1ff806ea5d4c9c5ef8c47ad"
+                                target="_blank"
+                                rel="noopener noreferrer"
+                                style={linkStyle}
+                            >
+                                Work with us
+                            </a>
+                        </div>
+                    </div>
+
+                    {/* What we do */}
+                    <div className="col-6 col-md-4">
+                        <p
+                            style={{
+                                fontSize: "0.76rem",
+                                fontWeight: 700,
+                                letterSpacing: "0.16em",
+                                textTransform: "uppercase",
+                                color: "var(--ai-faint)",
+                                marginBottom: "16px",
+                            }}
+                        >
+                            What we do
+                        </p>
+                        <p style={{ color: "var(--ai-muted)", lineHeight: 1.7 }}>
+                            Cinematic aerial and on-ground production for flight schools, dealers,
+                            charter operators, and aviation brands — plus the social content that
+                            keeps you in front of a buyer while they decide.
+                        </p>
+
+                        <div className="d-flex gap-3 mt-4">
+                            {SOCIALS.map((social) => (
                                 <a
-                                    key={i}
+                                    key={social.icon}
                                     href={social.href}
                                     target="_blank"
                                     rel="noopener noreferrer"
-                                    className="text-white"
+                                    aria-label={social.label}
                                     style={{
-                                        fontSize: "2.0rem",
-                                        transition: "transform 0.2s ease-in-out",
-                                        margin: "0 20px",
+                                        display: "inline-flex",
+                                        alignItems: "center",
+                                        justifyContent: "center",
+                                        width: "44px",
+                                        height: "44px",
+                                        borderRadius: "999px",
+                                        background: "var(--ai-surface)",
+                                        border: "1px solid var(--ai-line)",
+                                        color: "var(--ai-text)",
+                                        fontSize: "1.2rem",
+                                        textDecoration: "none",
                                     }}
-                                    onMouseEnter={(e) => (e.currentTarget.style.transform = "scale(1.2)")}
-                                    onMouseLeave={(e) => (e.currentTarget.style.transform = "scale(1)")}
                                 >
-                                    <i className={`bi bi-${social.icon}`}></i>
+                                    <i className={`bi bi-${social.icon}`} aria-hidden="true"></i>
                                 </a>
                             ))}
                         </div>
-
                     </div>
                 </div>
 
-                {/* Bottom Bar */}
                 <div
-                    className="text-center mt-5 pt-3"
-                    style={{ borderTop: "1px solid #FFFFFF" }}
+                    className="d-flex flex-wrap justify-content-between gap-2 mt-5 pt-4"
+                    style={{ borderTop: "1px solid var(--ai-line)", color: "var(--ai-faint)", fontSize: "0.85rem" }}
                 >
-                    <small>
-                        Designed & Developed by <span className="text-warning">Jacob Elliott</span>
-                    </small>
+                    <span>© {new Date().getFullYear()} Altitude Imaging. All rights reserved.</span>
+                    <span>
+                        Designed &amp; developed by{" "}
+                        <span style={{ color: "var(--ai-text)" }}>Jacob Elliott</span>
+                    </span>
                 </div>
             </div>
         </footer>
