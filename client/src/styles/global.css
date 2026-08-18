@@ -215,28 +215,61 @@ button:focus-visible {
 }
 
 /* =========================================================
-   Client logo marquee
+   Client logo carousel
+   One set of logos plus an identical clone. The clone is the only
+   reason the loop looks continuous — it is aria-hidden so screen
+   readers hear each brand once.
    ========================================================= */
 .logoMarquee {
+    --logo-gap: clamp(64px, 7vw, 118px);
+    --logo-height: 78px;
+
     position: relative;
     overflow: hidden;
     width: 100%;
-    padding: 18px 0;
+    padding: 30px 0;
+    /* hairlines top and bottom, faded at both ends so the rail reads as a band */
+    background-image:
+        linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.13) 22%, rgba(255, 255, 255, 0.13) 78%, transparent),
+        linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.13) 22%, rgba(255, 255, 255, 0.13) 78%, transparent);
+    background-size: 100% 1px, 100% 1px;
+    background-position: 0 0, 0 100%;
+    background-repeat: no-repeat;
     /* fade the ends so logos drift in and out instead of clipping */
-    -webkit-mask-image: linear-gradient(90deg, transparent, #000 8%, #000 92%, transparent);
-    mask-image: linear-gradient(90deg, transparent, #000 8%, #000 92%, transparent);
+    -webkit-mask-image: linear-gradient(90deg, transparent, #000 10%, #000 90%, transparent);
+    mask-image: linear-gradient(90deg, transparent, #000 10%, #000 90%, transparent);
+}
+
+/* soft accent wash behind the logos */
+.logoMarquee::before {
+    content: "";
+    position: absolute;
+    inset: -60% 0;
+    pointer-events: none;
+    background: radial-gradient(58% 120% at 50% 50%, rgba(56, 189, 248, 0.13), transparent 68%);
 }
 
 .logoTrack {
+    position: relative;
     display: flex;
     align-items: center;
     width: max-content;
-    gap: 64px;
-    animation: marquee 34s linear infinite;
+    /* no gap here: each set carries its own trailing gap, which is what keeps
+       the -50% translate landing exactly on the clone's first logo */
+    gap: 0;
+    animation: marquee 38s linear infinite;
     will-change: transform;
 }
 
-.logoMarquee:hover .logoTrack {
+.logoSet {
+    display: flex;
+    align-items: center;
+    gap: var(--logo-gap);
+    padding-right: var(--logo-gap);
+}
+
+.logoMarquee:hover .logoTrack,
+.logoMarquee:focus-within .logoTrack {
     animation-play-state: paused;
 }
 
@@ -244,58 +277,66 @@ button:focus-visible {
     display: flex;
     align-items: center;
     justify-content: center;
-    height: 74px;
+    height: var(--logo-height);
     padding: 0 8px;
 }
 
 .logoItem img {
     height: 100%;
     width: auto;
-    max-height: 74px;
+    max-height: var(--logo-height);
     object-fit: contain;
-    filter: grayscale(100%) brightness(1.6);
-    opacity: 0.55;
-    transition: opacity 300ms var(--ai-ease), filter 300ms var(--ai-ease), transform 300ms var(--ai-ease);
+    filter: grayscale(100%) brightness(1.85) contrast(1.05);
+    opacity: 0.66;
+    transition: opacity 320ms var(--ai-ease), filter 320ms var(--ai-ease), transform 320ms var(--ai-ease);
 }
 
 .logoItem img:hover {
     opacity: 1;
-    filter: grayscale(0%) brightness(1.15);
-    transform: translateY(-3px);
+    filter: grayscale(0%) brightness(1.12) drop-shadow(0 8px 22px rgba(56, 189, 248, 0.35));
+    transform: translateY(-4px) scale(1.04);
 }
 
 @keyframes marquee {
-    0% {
-        transform: translateX(0);
+    from {
+        transform: translate3d(0, 0, 0);
     }
 
-    100% {
-        /* the track is duplicated, so half a loop is a seamless loop */
-        transform: translateX(-50%);
+    to {
+        /* the track is one set plus an identical clone, so half of it is a full loop */
+        transform: translate3d(-50%, 0, 0);
     }
 }
 
 @media (prefers-reduced-motion: reduce) {
+    /* no scroll, so the clone would just repeat every brand on screen */
+    .logoSet[aria-hidden="true"] {
+        display: none;
+    }
+
     .logoTrack {
         animation: none;
+        width: 100%;
+        justify-content: center;
+    }
+
+    .logoSet {
         flex-wrap: wrap;
         justify-content: center;
-        width: 100%;
+        gap: clamp(36px, 5vw, 72px);
+        padding-right: 0;
     }
 }
 
 @media (max-width: 768px) {
+    .logoMarquee {
+        --logo-gap: 44px;
+        --logo-height: 54px;
+        padding: 22px 0;
+    }
+
     .logoTrack {
-        gap: 36px;
-        animation-duration: 24s;
-    }
-
-    .logoItem {
-        height: 52px;
-    }
-
-    .logoItem img {
-        max-height: 52px;
+        animation-duration: 26s;
     }
 }
 

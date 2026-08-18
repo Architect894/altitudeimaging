@@ -306,10 +306,20 @@ export default function Home() {
                     <div data-reveal style={{ "--reveal-delay": "100ms" }}>
                         <div className="logoMarquee">
                             <div className="logoTrack">
-                                {/* rendered twice so the marquee loops seamlessly */}
-                                {[...CLIENT_LOGOS, ...CLIENT_LOGOS].map((logo, i) => (
-                                    <div className="logoItem" key={`logo-${i}`}>
-                                        <img src={logo.src} alt={logo.alt} loading="lazy" />
+                                {/* the second set is a clone that makes the scroll loop
+                                    seamlessly — it is hidden from screen readers so each
+                                    brand is announced once */}
+                                {[false, true].map((isClone) => (
+                                    <div
+                                        className="logoSet"
+                                        key={isClone ? "clone" : "set"}
+                                        aria-hidden={isClone || undefined}
+                                    >
+                                        {CLIENT_LOGOS.map((logo) => (
+                                            <div className="logoItem" key={logo.alt}>
+                                                <img src={logo.src} alt={isClone ? "" : logo.alt} loading="lazy" />
+                                            </div>
+                                        ))}
                                     </div>
                                 ))}
                             </div>
