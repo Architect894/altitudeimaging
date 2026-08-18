@@ -1,4 +1,4 @@
-## YouTube integration
+## YouTube integration!
 
 The homepage "Latest From The Channel" section pulls live from the Pastor Pilot
 channel instead of a hardcoded list. It takes the channel's most recent uploads,
