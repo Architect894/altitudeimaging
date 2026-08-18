@@ -1,3 +1,52 @@
+## YouTube integration
+
+The homepage "Latest From The Channel" section pulls live from the Pastor Pilot
+channel instead of a hardcoded list. It takes the channel's most recent uploads,
+ranks them by view count, and shows the top 3.
+
+### Setup
+
+1. In the [Google Cloud console](https://console.cloud.google.com/), create (or pick)
+   a project and enable **YouTube Data API v3**.
+2. Under **APIs & Services -> Credentials**, create an **API key**. Restrict it to the
+   YouTube Data API v3.
+3. Copy `.env.example` to `.env.local` and set `YOUTUBE_API_KEY`.
+4. On Vercel, add the same variable under **Project Settings -> Environment Variables**
+   for Production, Preview, and Development.
+
+### Changing the three videos by hand
+
+Until an API key is set, the section shows a hand-picked list. To swap the videos,
+edit `FALLBACK_IDS` at the top of `src/app/api/youtube/top/route.js`:
+
+```js
+const FALLBACK_IDS = ["-fOSwehRX90", "ERYv7SVqZao", "8X4aDcc5e5E"];
+```
+
+Each id is the part of a share link after `youtu.be/`, dropping anything from `?`
+onward. For `https://youtu.be/-fOSwehRX90?si=adxirIaG...` the id is `-fOSwehRX90`.
+They appear on the page in the order listed.
+
+Titles and thumbnails for these are looked up automatically through YouTube’s public
+oEmbed endpoint, so no key is needed to keep them accurate — only the view counts
+require the Data API.
+
+This list is also the safety net once the API key is in place: if YouTube errors out,
+the section falls back to it rather than rendering empty.
+
+### How it works
+
+- `src/app/api/youtube/top/route.js` talks to YouTube and is cached for 6 hours
+  (`revalidate`), so normal traffic costs no extra API quota. A refresh costs 3 quota
+  units out of the default 10,000/day.
+- Cards render as thumbnails; the YouTube iframe only loads once a visitor clicks one,
+  which keeps the homepage fast.
+- Tunables at the top of the route: `RECENT_POOL` (how many recent uploads to rank),
+  `TOP_N` (how many to show), and `EXCLUDE_SHORTS` (Shorts are skipped by default
+  because the grid is 16:9).
+
+---
+
 This is a [Next.js](https://nextjs.org) project bootstrapped with [`create-next-app`](https://github.com/vercel/next.js/tree/canary/packages/create-next-app).
 
 ## Getting Started

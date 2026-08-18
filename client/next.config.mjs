@@ -5,6 +5,14 @@ const nextConfig = {
         remotePatterns: [
             {
                 protocol: 'https',
+                hostname: 'i.ytimg.com',
+            },
+            {
+                protocol: 'https',
+                hostname: 'i9.ytimg.com',
+            },
+            {
+                protocol: 'https',
                 hostname: 'altitudeimagingvideos.b-cdn.net',
                 // You can add pathname if you want to restrict further, e.g.:
                 // pathname: '/**',
