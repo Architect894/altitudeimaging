@@ -4,11 +4,21 @@ import React from "react";
 import Link from "next/link";
 import "bootstrap/dist/css/bootstrap.min.css";
 import "../styles/global.css";
+import { LEAD_FORMS, START_HREF } from "@/lib/leadForms";
 
 const SOCIALS = [
     { href: "https://facebook.com/altitudeimagingofficial/", icon: "facebook", label: "Facebook" },
     { href: "https://instagram.com/altitudeimagingofficial/", icon: "instagram", label: "Instagram" },
 ];
+
+const headingStyle = {
+    fontSize: "0.75rem",
+    fontWeight: 600,
+    letterSpacing: "0.18em",
+    textTransform: "uppercase",
+    color: "var(--ai-faint)",
+    marginBottom: "16px",
+};
 
 const linkStyle = {
     color: "var(--ai-muted)",
@@ -23,7 +33,7 @@ export default function Footer() {
                 position: "relative",
                 marginTop: "40px",
                 borderTop: "1px solid var(--ai-line)",
-                background: "linear-gradient(180deg, rgba(255,255,255,0.03), rgba(5,8,15,0.65))",
+                background: "var(--ai-bg-elev)",
                 color: "var(--ai-text)",
                 padding: "clamp(48px, 6vw, 80px) 0 32px",
             }}
@@ -31,12 +41,12 @@ export default function Footer() {
             <div style={{ maxWidth: "1200px", margin: "0 auto", padding: "0 24px" }}>
                 <div className="row g-5">
                     {/* Brand */}
-                    <div className="col-12 col-md-5">
+                    <div className="col-12 col-md-4">
                         <h3
                             style={{
                                 fontFamily: "var(--ai-font-display)",
-                                fontWeight: 800,
-                                fontSize: "1.45rem",
+                                fontWeight: 700,
+                                fontSize: "1.35rem",
                                 marginBottom: "10px",
                             }}
                         >
@@ -57,52 +67,47 @@ export default function Footer() {
                     </div>
 
                     {/* Explore */}
-                    <div className="col-6 col-md-3">
-                        <p
-                            style={{
-                                fontSize: "0.76rem",
-                                fontWeight: 700,
-                                letterSpacing: "0.16em",
-                                textTransform: "uppercase",
-                                color: "var(--ai-faint)",
-                                marginBottom: "16px",
-                            }}
-                        >
+                    <div className="col-6 col-md-2">
+                        <p style={headingStyle}>
                             Explore
                         </p>
                         <div className="d-flex flex-column gap-2">
                             <Link href="/#work" style={linkStyle}>The work</Link>
                             <Link href="/#youtube-feature" style={linkStyle}>Channel</Link>
                             <Link href="/#reviews" style={linkStyle}>Reviews</Link>
-                            <a
-                                href="https://www.notion.so/Work-with-us-2f5154c8e1ff806ea5d4c9c5ef8c47ad"
-                                target="_blank"
-                                rel="noopener noreferrer"
-                                style={linkStyle}
-                            >
-                                Work with us
-                            </a>
+                            <Link href={START_HREF} style={linkStyle}>Get started</Link>
+                        </div>
+                    </div>
+
+                    {/* Start a project — one link per Lead Peeks form */}
+                    <div className="col-6 col-md-3">
+                        <p style={headingStyle}>
+                            Start a project
+                        </p>
+                        <div className="d-flex flex-column gap-2">
+                            {LEAD_FORMS.map((form) => (
+                                <a
+                                    key={form.key}
+                                    href={form.href}
+                                    target="_blank"
+                                    rel="noopener noreferrer"
+                                    style={linkStyle}
+                                >
+                                    {form.label}
+                                </a>
+                            ))}
                         </div>
                     </div>
 
                     {/* What we do */}
-                    <div className="col-6 col-md-4">
-                        <p
-                            style={{
-                                fontSize: "0.76rem",
-                                fontWeight: 700,
-                                letterSpacing: "0.16em",
-                                textTransform: "uppercase",
-                                color: "var(--ai-faint)",
-                                marginBottom: "16px",
-                            }}
-                        >
+                    <div className="col-12 col-md-3">
+                        <p style={headingStyle}>
                             What we do
                         </p>
                         <p style={{ color: "var(--ai-muted)", lineHeight: 1.7 }}>
-                            Cinematic aerial and on-ground production for flight schools, dealers,
-                            charter operators, and aviation brands — plus the social content that
-                            keeps you in front of a buyer while they decide.
+                            Cinematic aerial and on-ground production for aircraft makers and
+                            dealers, flight schools, and mission organizations, plus the social
+                            content that keeps you in front of buyers while they decide.
                         </p>
 
                         <div className="d-flex gap-3 mt-4">
@@ -119,9 +124,8 @@ export default function Footer() {
                                         justifyContent: "center",
                                         width: "44px",
                                         height: "44px",
-                                        borderRadius: "999px",
-                                        background: "var(--ai-surface)",
-                                        border: "1px solid var(--ai-line)",
+                                        borderRadius: "var(--ai-radius-btn)",
+                                        border: "1px solid var(--ai-line-strong)",
                                         color: "var(--ai-text)",
                                         fontSize: "1.2rem",
                                         textDecoration: "none",

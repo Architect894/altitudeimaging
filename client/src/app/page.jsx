@@ -5,10 +5,9 @@ import Image from "next/image";
 import "bootstrap/dist/css/bootstrap.min.css";
 import "../styles/global.css";
 import styles from "../styles/styles.module.css";
+import { LEAD_FORMS, leadForm } from "@/lib/leadForms";
 
 const YT_CHANNEL_URL = "https://www.youtube.com/@PastorPilot";
-const WORK_WITH_US_URL =
-    "https://www.notion.so/Work-with-us-2f5154c8e1ff806ea5d4c9c5ef8c47ad";
 const GOOGLE_REVIEWS_URL =
     "https://www.google.com/search?q=Altitude+Imaging+Reviews";
 const REEL_VIDEO_URL = "https://altitudeimagingvideos.b-cdn.net/LOOP%202.m4v";
@@ -20,21 +19,31 @@ const YT_SKELETONS = [0, 1, 2];
 const PAIN_POINTS = [
     {
         title: "The quote goes out, then silence.",
-        body: "Nothing keeps you top of mind while a buyer spends three months deciding.",
+        body: "Nothing keeps you in front of a buyer during the months they spend deciding.",
     },
     {
         title: "Your listing looks like every other listing.",
-        body: "Phone photos in a dim hangar cannot carry a six-figure aircraft or a full rating.",
+        body: "Phone photos in a dim hangar can't sell a six-figure aircraft or a full rating.",
     },
     {
-        title: "Your marketing people do not speak aviation.",
-        body: "You spend half of every kickoff call explaining what a discovery flight is.",
+        title: "Your marketing people don't speak aviation.",
+        body: "Half of every kickoff call goes to explaining what a discovery flight is.",
     },
     {
-        title: "Interest that never turns into a booking.",
-        body: "The inquiries come in. The schedule still has gaps you cannot explain.",
+        title: "Inquiries that never turn into bookings.",
+        body: "The interest is there. The schedule still has gaps.",
     },
 ];
+
+const BEATS = [
+    { title: "We speak the language.", body: "Pilots on both sides of the camera." },
+    { title: "We know the hurdles.", body: "Long sales cycles, big tickets, cautious buyers." },
+    { title: "We drive results.", body: "Every shoot is planned around the sale it needs to make." },
+];
+
+// The audiences listed mid-page; "Anything else" only appears in the chooser
+const AUDIENCES = LEAD_FORMS.filter((form) => form.key !== "other");
+const PASTOR_PILOT_FORM = leadForm("pastor-pilot");
 
 const CLIENT_LOGOS = [
     { src: "https://altitudeimagingvideos.b-cdn.net/habitatwhite.png", alt: "Habitat Land" },
@@ -77,6 +86,9 @@ const initialsOf = (name) =>
         .slice(0, 2)
         .toUpperCase();
 
+// Lead Peeks forms live on another domain, so they open alongside the site
+const external = { target: "_blank", rel: "noopener noreferrer" };
+
 export default function Home() {
     // Top-performing recent uploads, pulled live from the YouTube Data API
     const [videos, setVideos] = useState([]);
@@ -86,10 +98,22 @@ export default function Home() {
     // Nothing embeds until a click, so the homepage stays light.
     const [playingId, setPlayingId] = useState(null);
 
-    // The showreel now sits well below the fold, so its source is only attached
-    // once the visitor scrolls near it — the page above it loads on text alone.
+    // The hero footage is only attached once we know the visitor has not asked
+    // for reduced motion. Until then (and for them) the shaded panel stands alone.
+    const [heroMotion, setHeroMotion] = useState(false);
+
+    // The showreel sits well below the fold, so its source is only attached
+    // once the visitor scrolls near it.
     const reelRef = useRef(null);
     const [reelReady, setReelReady] = useState(false);
+
+    useEffect(() => {
+        const query = window.matchMedia("(prefers-reduced-motion: reduce)");
+        const sync = () => setHeroMotion(!query.matches);
+        sync();
+        query.addEventListener("change", sync);
+        return () => query.removeEventListener("change", sync);
+    }, []);
 
     // Ease every [data-reveal] element in as it enters the viewport
     useEffect(() => {
@@ -162,69 +186,74 @@ export default function Home() {
 
     return (
         <>
-            {/* ================= 1. HERO — the pain points lead the page ================= */}
+            {/* ================= 1. HERO — pain points lead, footage behind ================= */}
             <section id="home" className={styles.hero}>
-                <div className={styles.heroAura} aria-hidden="true" />
+                <div className={styles.heroMedia} aria-hidden="true">
+                    {heroMotion ? (
+                        <video
+                            className={styles.heroVideo}
+                            autoPlay
+                            loop
+                            muted
+                            playsInline
+                            preload="metadata"
+                        >
+                            <source src={REEL_VIDEO_URL} type="video/mp4" />
+                        </video>
+                    ) : null}
+                    <div className={styles.heroShade} />
+                </div>
 
                 <div className={styles.shell}>
                     <div className={styles.heroGrid}>
                         {/* Left: the problem, stated plainly */}
                         <div className={styles.heroCopy}>
                             <p className={styles.kicker} data-reveal>
-                                <span className={styles.kickerDot} aria-hidden="true" />
                                 By aviators, for aviators
                             </p>
 
                             <h1 className={styles.heroTitle} data-reveal style={{ "--reveal-delay": "80ms" }}>
                                 Aviation buyers decide{" "}
                                 <span className={styles.heroTitleAccent}>
-                                    long before they ever call you.
+                                    long before they call you.
                                 </span>
                             </h1>
 
                             <p className={styles.heroLead} data-reveal style={{ "--reveal-delay": "160ms" }}>
-                                Most flight schools, dealers, and charter operators lose the sale in the
-                                silence — the weeks a prospect spends researching, comparing, and
-                                scrolling.{" "}
+                                Flight schools, aircraft makers, and dealers lose most sales in the weeks
+                                a prospect spends researching alone.{" "}
                                 <span className={styles.heroLeadStrong}>
-                                    Altitude Imaging fills that silence with video that earns trust before
-                                    the first phone call.
+                                    We make the video that does the convincing during those weeks.
                                 </span>
                             </p>
 
                             <div className={styles.heroActions} data-reveal style={{ "--reveal-delay": "240ms" }}>
-                                <a
-                                    href={WORK_WITH_US_URL}
-                                    target="_blank"
-                                    rel="noopener noreferrer"
-                                    className={styles.btnPrimary}
-                                >
-                                    Work With Us
+                                <a href="#start" className={styles.btnPrimary}>
+                                    Get started
                                     <span className={styles.btnArrow} aria-hidden="true">→</span>
                                 </a>
                                 <a href="#work" className={styles.btnGhost}>
                                     See the work
-                                    <span className={styles.btnArrow} aria-hidden="true">↓</span>
                                 </a>
                             </div>
 
                             <div className={styles.heroProof} data-reveal style={{ "--reveal-delay": "320ms" }}>
                                 <span className={styles.heroProofStars} aria-hidden="true">★★★★★</span>
                                 <span>
-                                    Five-star rated — trusted by flight schools, dealers, charter
-                                    operators, and aviation brands.
+                                    Five-star rated on Google. Trusted by Tecnam, Sling, Flying C, and
+                                    Central Aviation.
                                 </span>
                             </div>
                         </div>
 
                         {/* Right: the pain points themselves, visible without scrolling */}
                         <aside className={styles.painPanel} data-reveal style={{ "--reveal-delay": "200ms" }}>
-                            <h2 className={styles.painPanelHead}>Sound familiar?</h2>
+                            <h2 className={styles.painPanelHead}>Where sales stall</h2>
 
                             <ul className={styles.painList}>
                                 {PAIN_POINTS.map((pain) => (
                                     <li className={styles.painItem} key={pain.title}>
-                                        <span className={styles.painMark} aria-hidden="true">✕</span>
+                                        <span className={styles.painMark} aria-hidden="true" />
                                         <span>
                                             <span className={styles.painTitle}>{pain.title}</span>
                                             <span className={styles.painBody}>{pain.body}</span>
@@ -234,8 +263,10 @@ export default function Home() {
                             </ul>
 
                             <p className={styles.painFoot}>
-                                If two of those landed,{" "}
-                                <span className={styles.painFootStrong}>we should talk.</span>
+                                Sound like you?{" "}
+                                <a href="#start" className={styles.textLink}>
+                                    Get started →
+                                </a>
                             </p>
                         </aside>
                     </div>
@@ -243,12 +274,11 @@ export default function Home() {
             </section>
 
             {/* ================= 2. THE ANSWER ================= */}
-            <section className={`${styles.section} ${styles.sectionDivided}`}>
+            <section className={styles.section}>
                 <div className={styles.shell}>
-                    <div className={styles.sectionHead}>
+                    <div className={`${styles.sectionHead} ${styles.sectionHeadWide}`}>
                         <p className={styles.kicker} data-reveal>
-                            <span className={styles.kickerDot} aria-hidden="true" />
-                            Where we come in
+                            What we do
                         </p>
 
                         <h2 className={styles.promiseBrand} data-reveal style={{ "--reveal-delay": "80ms" }}>
@@ -256,15 +286,18 @@ export default function Home() {
                         </h2>
 
                         <p className={styles.sectionSub} data-reveal style={{ "--reveal-delay": "140ms" }}>
-                            Customer video marketing strategies that produce more sales, generate
-                            better leads, and shorten sales cycles.
+                            Video strategy and production that shortens sales cycles and brings in
+                            better leads.
                         </p>
                     </div>
 
                     <ul className={styles.beats} data-reveal style={{ "--reveal-delay": "180ms" }}>
-                        <li>We speak the language.</li>
-                        <li>We know the hurdles.</li>
-                        <li>We drive results.</li>
+                        {BEATS.map((beat) => (
+                            <li key={beat.title}>
+                                <span className={styles.beatTitle}>{beat.title}</span>
+                                <span className={styles.beatBody}>{beat.body}</span>
+                            </li>
+                        ))}
                     </ul>
 
                     <div className={styles.valueGrid}>
@@ -273,34 +306,31 @@ export default function Home() {
                             <div className={styles.cardBig}>Demand-driven aviation media.</div>
                             <div className={styles.cardDivider} />
                             <div className={styles.cardSmall}>
-                                Premium content that turns aircraft, training, and experiences into
-                                bookings.
+                                Premium content that turns aircraft, training, and missions into
+                                bookings and support. Cinematic aerials, on-ground production, and
+                                social content that keeps you in front of buyers.
                             </div>
                         </div>
 
-                        <div className={styles.valueCard} data-reveal style={{ "--reveal-delay": "220ms" }}>
-                            <div className={styles.cardLabel}>Altitude Imaging helps</div>
+                        <div className={`${styles.valueCard} ${styles.valueCardAccent}`} data-reveal style={{ "--reveal-delay": "220ms" }}>
+                            <div className={styles.cardLabel}>Who we work with</div>
                             <ul className={styles.helpList}>
-                                {["Flight schools", "Dealers", "Charter operators", "Aviation brands"].map(
-                                    (who) => (
-                                        <li key={who}>
-                                            <span className={styles.check} aria-hidden="true">✓</span>
-                                            {who}
-                                        </li>
-                                    )
-                                )}
+                                {AUDIENCES.map((form) => (
+                                    <li key={form.key}>
+                                        <a href={form.href} {...external} className={styles.helpLink}>
+                                            {form.label}
+                                            <span className={styles.rowArrow} aria-hidden="true">→</span>
+                                        </a>
+                                    </li>
+                                ))}
                             </ul>
-                            <div className={styles.cardDivider} />
-                            <div className={styles.cardSmall}>
-                                Cinematic aerials • on-ground production • scroll-stopping social content
-                            </div>
                         </div>
                     </div>
                 </div>
             </section>
 
             {/* ================= 3. TRUST ================= */}
-            <section className={`${styles.section} ${styles.sectionTight}`}>
+            <section className={`${styles.section} ${styles.sectionTight} ${styles.sectionBand}`}>
                 <div className={styles.shell}>
                     <p className={styles.trustLabel} data-reveal>Companies who trust us</p>
                     <div data-reveal style={{ "--reveal-delay": "100ms" }}>
@@ -328,20 +358,18 @@ export default function Home() {
                 </div>
             </section>
 
-            {/* ================= 4. THE WORK — video lives here, not at the top ================= */}
-            <section id="work" className={`${styles.section} ${styles.sectionDivided}`}>
+            {/* ================= 4. THE WORK ================= */}
+            <section id="work" className={styles.section}>
                 <div className={styles.shell}>
                     <div className={styles.sectionHead}>
                         <p className={styles.kicker} data-reveal>
-                            <span className={styles.kickerDot} aria-hidden="true" />
                             The work
                         </p>
                         <h2 className={styles.sectionTitle} data-reveal style={{ "--reveal-delay": "80ms" }}>
                             See it in motion.
                         </h2>
                         <p className={styles.sectionSub} data-reveal style={{ "--reveal-delay": "140ms" }}>
-                            The kind of footage that keeps a prospect watching instead of scrolling
-                            past.
+                            Footage that keeps a prospect watching instead of scrolling past.
                         </p>
                     </div>
 
@@ -364,35 +392,31 @@ export default function Home() {
                         </div>
 
                         <div className={styles.reelCaption}>
-                            <div>
-                                <p className={styles.reelTitle}>Cinematic aerial + on-ground production</p>
-                                <p className={styles.reelSub}>
-                                    Shot, edited, and delivered ready to run.
-                                </p>
-                            </div>
-                            <span className={styles.reelBadge}>
-                                <span className={styles.reelBadgeDot} aria-hidden="true" />
-                                Showreel
-                            </span>
+                            <p className={styles.reelTitle}>Cinematic aerial and on-ground production</p>
+                            <p className={styles.reelSub}>Shot, edited, and delivered ready to run.</p>
                         </div>
                     </div>
                 </div>
             </section>
 
             {/* ================= 5. YOUTUBE ================= */}
-            <section id="youtube-feature" className={styles.section}>
+            <section id="youtube-feature" className={`${styles.section} ${styles.sectionBand}`}>
                 <div className={styles.shell}>
                     <div className={styles.sectionHead}>
-                        <h2 className={styles.sectionTitle} data-reveal>Latest from the channel</h2>
-                        <p className={styles.sectionSub} data-reveal style={{ "--reveal-delay": "80ms" }}>
+                        <p className={styles.kicker} data-reveal>
+                            Pastor Pilot
+                        </p>
+                        <h2 className={styles.sectionTitle} data-reveal style={{ "--reveal-delay": "80ms" }}>
+                            Latest from the channel
+                        </h2>
+                        <p className={styles.sectionSub} data-reveal style={{ "--reveal-delay": "140ms" }}>
                             Our three best-performing recent uploads.
                         </p>
 
-                        <div className="d-flex justify-content-center mt-4" data-reveal style={{ "--reveal-delay": "140ms" }}>
+                        <div className={styles.ytActions} data-reveal style={{ "--reveal-delay": "200ms" }}>
                             <a
                                 href={YT_CHANNEL_URL}
-                                target="_blank"
-                                rel="noopener noreferrer"
+                                {...external}
                                 aria-label="Visit the Pastor Pilot YouTube channel"
                                 className={styles.ytChannel}
                             >
@@ -405,7 +429,11 @@ export default function Home() {
                                         style={{ width: "100%", height: "100%", objectFit: "cover" }}
                                     />
                                 </span>
-                                <span className={styles.ytLabel}>Pastor Pilot</span>
+                                <span className={styles.ytLabel}>Watch on YouTube</span>
+                            </a>
+                            <a href={PASTOR_PILOT_FORM.href} {...external} className={styles.btnPrimary}>
+                                Partner with Pastor Pilot
+                                <span className={styles.btnArrow} aria-hidden="true">→</span>
                             </a>
                         </div>
                     </div>
@@ -449,7 +477,7 @@ export default function Home() {
                                                     sizes="(max-width: 992px) 100vw, 33vw"
                                                     className={styles.ytThumbImg}
                                                 />
-                                                <span className={styles.ytRank}>#{i + 1}</span>
+                                                <span className={styles.ytRank}>{String(i + 1).padStart(2, "0")}</span>
                                                 <span className={styles.ytPlay} aria-hidden="true" />
                                             </button>
                                         )}
@@ -474,15 +502,14 @@ export default function Home() {
             </section>
 
             {/* ================= 6. REVIEWS ================= */}
-            <section id="reviews" className={`${styles.section} ${styles.sectionDivided}`}>
+            <section id="reviews" className={styles.section}>
                 <div className={styles.shell}>
                     <div className={styles.sectionHead}>
                         <p className={styles.kicker} data-reveal>
-                            <span className={styles.kickerDot} aria-hidden="true" />
-                            Proof
+                            Reviews
                         </p>
                         <h2 className={styles.sectionTitle} data-reveal style={{ "--reveal-delay": "80ms" }}>
-                            What people are saying
+                            What clients say
                         </h2>
                     </div>
 
@@ -513,53 +540,39 @@ export default function Home() {
                     </div>
 
                     <div className="d-flex justify-content-center mt-4 pt-2" data-reveal>
-                        <a
-                            href={GOOGLE_REVIEWS_URL}
-                            target="_blank"
-                            rel="noopener noreferrer"
-                            className={styles.btnGhost}
-                        >
-                            See more Google reviews
+                        <a href={GOOGLE_REVIEWS_URL} {...external} className={styles.btnGhost}>
+                            More Google reviews
                             <span className={styles.btnArrow} aria-hidden="true">→</span>
                         </a>
                     </div>
                 </div>
             </section>
 
-            {/* ================= 7. CLOSING CTA ================= */}
-            <section className={styles.section}>
+            {/* ================= 7. START A PROJECT — routes each visitor to their form ================= */}
+            <section id="start" className={`${styles.section} ${styles.startSection}`}>
                 <div className={styles.shell}>
-                    <div className={styles.ctaPanel} data-reveal>
-                        <h2 className={styles.ctaTitle}>Stop explaining it. Start showing it.</h2>
-                        <p className={styles.ctaSub}>
-                            Tell us what you fly and who you are trying to reach. We will come back
-                            with a plan for the video that does the selling for you.
-                        </p>
+                    <div className={styles.startGrid}>
+                        <div className={styles.startIntro}>
+                            <div className={styles.startHead} data-reveal>
+                                <p className={styles.kicker}>Start a project</p>
+                                <h2 className={styles.startTitle}>Stop explaining it. Start showing it.</h2>
+                                <p className={styles.startSub}>
+                                    Pick the option that fits. Each one goes to a short form, and
+                                    we&apos;ll come back with a plan.
+                                </p>
+                            </div>
 
-                        <div className={styles.ctaRow}>
-                            <a
-                                href={WORK_WITH_US_URL}
-                                target="_blank"
-                                rel="noopener noreferrer"
-                                className={styles.btnPrimary}
-                            >
-                                Work With Us
-                                <span className={styles.btnArrow} aria-hidden="true">→</span>
-                            </a>
-                            <a href="mailto:jarred@altitudeimaging.org" className={styles.btnGhost}>
-                                jarred@altitudeimaging.org
-                            </a>
-                        </div>
+                            <div className={styles.contactLines} data-reveal>
+                                <a href="mailto:jarred@altitudeimaging.org">jarred@altitudeimaging.org</a>
+                                <a href="tel:8706238080">(870) 623-8080</a>
+                            </div>
 
-                        <div className={styles.socialBlock}>
-                            <div className={styles.socialLabel}>Visit our socials</div>
-                            <div className={styles.socialIcons}>
+                            <div className={styles.socialBlock} data-reveal>
                                 {SOCIALS.map((social) => (
                                     <a
                                         key={social.icon}
                                         href={social.href}
-                                        target="_blank"
-                                        rel="noopener noreferrer"
+                                        {...external}
                                         className={styles.socialIcon}
                                         aria-label={social.label}
                                     >
@@ -568,6 +581,20 @@ export default function Home() {
                                 ))}
                             </div>
                         </div>
+
+                        <ul className={styles.startList} data-reveal style={{ "--reveal-delay": "120ms" }}>
+                            {LEAD_FORMS.map((form) => (
+                                <li key={form.key}>
+                                    <a href={form.href} {...external} className={styles.startRow}>
+                                        <span>
+                                            <span className={styles.startLabel}>{form.label}</span>
+                                            <span className={styles.startBlurb}>{form.blurb}</span>
+                                        </span>
+                                        <span className={styles.rowArrow} aria-hidden="true">→</span>
+                                    </a>
+                                </li>
+                            ))}
+                        </ul>
                     </div>
                 </div>
             </section>

@@ -1,4 +1,4 @@
-import { Inter, Sora } from "next/font/google";
+import { Inter, Inter_Tight } from "next/font/google";
 import 'bootstrap/dist/css/bootstrap.min.css';
 import '@/styles/global.css';
 import DropMenu from "@/components/dropMenu";
@@ -12,9 +12,9 @@ const body = Inter({
   variable: "--font-body",
 });
 
-const display = Sora({
+const display = Inter_Tight({
   subsets: ["latin"],
-  weight: ["600", "700", "800"],
+  weight: ["600", "700"],
   display: "swap",
   variable: "--font-display",
 });
@@ -22,17 +22,17 @@ const display = Sora({
 export const metadata = {
   title: "Altitude Imaging — Aviation Video Marketing",
   description:
-    "By aviators, for aviators. Video marketing for flight schools, dealers, and charter operators that earns trust before the first phone call.",
+    "By aviators, for aviators. Video marketing for light sport aircraft makers and dealers, flight schools, and mission organizations that earns trust before the first phone call.",
   openGraph: {
     title: "Altitude Imaging — Aviation Video Marketing",
     description:
-      "Video marketing for flight schools, dealers, and charter operators that earns trust before the first phone call.",
+      "Video marketing for aircraft makers and dealers, flight schools, and mission organizations that earns trust before the first phone call.",
     type: "website",
   },
 };
 
 export const viewport = {
-  themeColor: "#05080f",
+  themeColor: "#0a0d12",
 };
 
 export default function RootLayout({ children }) {

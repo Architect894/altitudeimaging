@@ -5,40 +5,48 @@
 /* =========================================================
    Altitude Imaging — design tokens
    One place to retune the palette and rhythm of the whole site.
+   Flat surfaces, hairline borders, one accent. No gradients or glows.
    ========================================================= */
 :root {
     /* surfaces */
-    --ai-bg: #05080f;
-    --ai-bg-elev: #0a1120;
-    --ai-surface: rgba(255, 255, 255, 0.045);
-    --ai-surface-2: rgba(255, 255, 255, 0.075);
-    --ai-line: rgba(255, 255, 255, 0.10);
-    --ai-line-strong: rgba(255, 255, 255, 0.20);
+    /* deep navy rather than neutral black, so the page reads as sky at dusk */
+    --ai-bg: #0a1220;
+    --ai-bg-elev: #0f1a2c;
+    --ai-band: #0c1626;
+    --ai-surface: #13213a;
+    --ai-surface-2: #1a2b48;
+    --ai-line: rgba(150, 185, 235, 0.12);
+    --ai-line-strong: rgba(160, 195, 245, 0.24);
 
     /* ink */
-    --ai-text: #eaf1fb;
-    --ai-muted: rgba(226, 236, 250, 0.68);
-    --ai-faint: rgba(226, 236, 250, 0.45);
+    --ai-text: #eef2f6;
+    --ai-muted: rgba(238, 242, 246, 0.68);
+    --ai-faint: rgba(238, 242, 246, 0.46);
 
-    /* accent — sky to horizon */
-    --ai-accent: #38bdf8;
-    --ai-accent-2: #818cf8;
-    --ai-accent-soft: rgba(56, 189, 248, 0.14);
+    /* accent — a single, flat sky blue, bright enough to find a button at a glance */
+    --ai-accent: #3fa9f5;
+    --ai-accent-hover: #67bcf8;
+    --ai-accent-ink: #03111f;
+    --ai-accent-soft: rgba(63, 169, 245, 0.14);
+    --ai-accent-shadow: 0 10px 28px -8px rgba(63, 169, 245, 0.55);
+    --ai-star: #f5b942;
 
     /* shape */
-    --ai-radius-sm: 12px;
-    --ai-radius: 20px;
-    --ai-radius-lg: 28px;
+    --ai-radius-sm: 4px;
+    --ai-radius: 8px;
+    --ai-radius-lg: 12px;
+    --ai-radius-btn: 6px;
     --ai-pill: 999px;
 
     /* depth + motion */
-    --ai-shadow: 0 24px 60px -22px rgba(0, 0, 0, 0.85);
-    --ai-shadow-lg: 0 40px 90px -30px rgba(0, 0, 0, 0.9);
+    --ai-shadow: 0 1px 0 rgba(255, 255, 255, 0.03) inset;
+    --ai-shadow-lg: 0 30px 60px -40px rgba(0, 0, 0, 0.8);
     --ai-ease: cubic-bezier(0.22, 0.61, 0.36, 1);
 
     /* vertical rhythm */
-    --ai-section: clamp(64px, 7.5vw, 112px);
+    --ai-section: clamp(72px, 8vw, 120px);
     --ai-shell: 1200px;
+    --ai-header: 112px;
 
     /* typography (wired up by next/font in layout.jsx) */
     /* The fallbacks matter: /contact and /videoedits are Pages Router routes and
@@ -54,7 +62,7 @@
 html {
     scroll-behavior: smooth;
     /* keeps anchor targets clear of the sticky header */
-    scroll-padding-top: 96px;
+    scroll-padding-top: 88px;
 }
 
 body {
@@ -64,26 +72,11 @@ body {
     text-rendering: optimizeLegibility;
 }
 
-/* Ambient light: soft auras fixed behind the page so scrolling reads as one
-   continuous space rather than a stack of separate blocks. */
 .custom-layout {
     position: relative;
     background-color: var(--ai-bg);
     color: var(--ai-text);
     overflow-x: hidden;
-}
-
-.custom-layout::before {
-    content: "";
-    position: fixed;
-    inset: 0;
-    z-index: -1;
-    pointer-events: none;
-    background:
-        radial-gradient(900px 620px at 12% -8%, rgba(56, 189, 248, 0.16), transparent 62%),
-        radial-gradient(760px 560px at 92% 12%, rgba(129, 140, 248, 0.13), transparent 60%),
-        radial-gradient(1100px 800px at 50% 108%, rgba(56, 189, 248, 0.08), transparent 65%),
-        linear-gradient(180deg, #05080f 0%, #070d18 45%, #05080f 100%);
 }
 
 h1,
@@ -96,11 +89,12 @@ h4,
 .display-4,
 .display-5 {
     font-family: var(--ai-font-display);
-    letter-spacing: -0.02em;
+    letter-spacing: -0.025em;
+    text-wrap: balance;
 }
 
 ::selection {
-    background: rgba(56, 189, 248, 0.32);
+    background: rgba(63, 169, 245, 0.35);
     color: #fff;
 }
 
@@ -109,7 +103,7 @@ a:focus-visible,
 button:focus-visible {
     outline: 2px solid var(--ai-accent);
     outline-offset: 3px;
-    border-radius: 6px;
+    border-radius: var(--ai-radius-sm);
 }
 
 /* =========================================================
@@ -117,12 +111,11 @@ button:focus-visible {
    ========================================================= */
 [data-reveal] {
     opacity: 0;
-    transform: translateY(22px);
+    transform: translateY(12px);
     transition:
-        opacity 780ms var(--ai-ease),
-        transform 780ms var(--ai-ease);
+        opacity 600ms var(--ai-ease),
+        transform 600ms var(--ai-ease);
     transition-delay: var(--reveal-delay, 0ms);
-    will-change: opacity, transform;
 }
 
 [data-reveal].is-in {
@@ -153,27 +146,25 @@ button:focus-visible {
     background: transparent;
     border-bottom: 1px solid transparent;
     transition:
-        background 320ms var(--ai-ease),
-        border-color 320ms var(--ai-ease),
-        backdrop-filter 320ms var(--ai-ease);
+        background 280ms var(--ai-ease),
+        border-color 280ms var(--ai-ease);
 }
 
 /* Applied once the visitor scrolls away from the top of the page */
 .menu-container.is-stuck {
-    background: rgba(5, 8, 15, 0.72);
+    background: rgba(10, 18, 32, 0.9);
     border-bottom-color: var(--ai-line);
-    backdrop-filter: blur(18px) saturate(140%);
-    -webkit-backdrop-filter: blur(18px) saturate(140%);
-    box-shadow: 0 18px 40px -30px rgba(0, 0, 0, 0.9);
+    backdrop-filter: blur(12px);
+    -webkit-backdrop-filter: blur(12px);
 }
 
 .nav-link-underline {
     position: relative;
     color: var(--ai-muted);
     text-decoration: none;
-    font-weight: 600;
-    font-size: 0.98rem;
-    transition: color 220ms var(--ai-ease);
+    font-weight: 500;
+    font-size: 0.95rem;
+    transition: color 200ms var(--ai-ease);
 }
 
 .nav-link-underline:hover {
@@ -186,22 +177,44 @@ button:focus-visible {
     left: 0;
     bottom: -6px;
     width: 100%;
-    height: 1.5px;
-    border-radius: 2px;
-    background: linear-gradient(90deg, var(--ai-accent), var(--ai-accent-2));
+    height: 1px;
+    background: var(--ai-accent);
     transform: scaleX(0);
     transform-origin: left;
-    transition: transform 300ms var(--ai-ease);
+    transition: transform 260ms var(--ai-ease);
 }
 
 .nav-link-underline:hover::after {
     transform: scaleX(1);
 }
 
+/* the one solid button in the header */
+.nav-cta {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    gap: 8px;
+    padding: 12px 22px;
+    border-radius: var(--ai-radius-btn);
+    font-weight: 700;
+    font-size: 0.98rem;
+    text-decoration: none;
+    color: var(--ai-accent-ink);
+    background: var(--ai-accent);
+    box-shadow: var(--ai-accent-shadow);
+    transition: background 200ms var(--ai-ease), transform 200ms var(--ai-ease);
+}
+
+.nav-cta:hover {
+    color: var(--ai-accent-ink);
+    background: var(--ai-accent-hover);
+    transform: translateY(-1px);
+}
+
 @keyframes menuDrop {
     from {
         opacity: 0;
-        transform: translateY(-10px);
+        transform: translateY(-6px);
     }
 
     to {
@@ -211,7 +224,7 @@ button:focus-visible {
 }
 
 .animate-dropdown {
-    animation: menuDrop 320ms var(--ai-ease) both;
+    animation: menuDrop 240ms var(--ai-ease) both;
 }
 
 /* =========================================================
@@ -222,31 +235,17 @@ button:focus-visible {
    ========================================================= */
 .logoMarquee {
     --logo-gap: clamp(64px, 7vw, 118px);
-    --logo-height: 78px;
+    --logo-height: 72px;
 
     position: relative;
     overflow: hidden;
     width: 100%;
-    padding: 30px 0;
-    /* hairlines top and bottom, faded at both ends so the rail reads as a band */
-    background-image:
-        linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.13) 22%, rgba(255, 255, 255, 0.13) 78%, transparent),
-        linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.13) 22%, rgba(255, 255, 255, 0.13) 78%, transparent);
-    background-size: 100% 1px, 100% 1px;
-    background-position: 0 0, 0 100%;
-    background-repeat: no-repeat;
+    padding: 28px 0;
+    border-top: 1px solid var(--ai-line);
+    border-bottom: 1px solid var(--ai-line);
     /* fade the ends so logos drift in and out instead of clipping */
     -webkit-mask-image: linear-gradient(90deg, transparent, #000 10%, #000 90%, transparent);
     mask-image: linear-gradient(90deg, transparent, #000 10%, #000 90%, transparent);
-}
-
-/* soft accent wash behind the logos */
-.logoMarquee::before {
-    content: "";
-    position: absolute;
-    inset: -60% 0;
-    pointer-events: none;
-    background: radial-gradient(58% 120% at 50% 50%, rgba(56, 189, 248, 0.13), transparent 68%);
 }
 
 .logoTrack {
@@ -257,7 +256,7 @@ button:focus-visible {
     /* no gap here: each set carries its own trailing gap, which is what keeps
        the -50% translate landing exactly on the clone's first logo */
     gap: 0;
-    animation: marquee 38s linear infinite;
+    animation: marquee 42s linear infinite;
     will-change: transform;
 }
 
@@ -287,14 +286,12 @@ button:focus-visible {
     max-height: var(--logo-height);
     object-fit: contain;
     filter: grayscale(100%) brightness(1.85) contrast(1.05);
-    opacity: 0.66;
-    transition: opacity 320ms var(--ai-ease), filter 320ms var(--ai-ease), transform 320ms var(--ai-ease);
+    opacity: 0.6;
+    transition: opacity 260ms var(--ai-ease);
 }
 
 .logoItem img:hover {
     opacity: 1;
-    filter: grayscale(0%) brightness(1.12) drop-shadow(0 8px 22px rgba(56, 189, 248, 0.35));
-    transform: translateY(-4px) scale(1.04);
 }
 
 @keyframes marquee {
@@ -331,12 +328,12 @@ button:focus-visible {
 @media (max-width: 768px) {
     .logoMarquee {
         --logo-gap: 44px;
-        --logo-height: 54px;
+        --logo-height: 50px;
         padding: 22px 0;
     }
 
     .logoTrack {
-        animation-duration: 26s;
+        animation-duration: 28s;
     }
 }
 
@@ -346,26 +343,21 @@ button:focus-visible {
 .frostedGlass,
 .custom-bg,
 .custombg {
-    background: var(--ai-surface);
+    background: rgba(10, 18, 32, 0.82);
     border: 1px solid var(--ai-line);
     border-radius: var(--ai-radius);
     padding: 2rem;
-    box-shadow: var(--ai-shadow);
-    backdrop-filter: blur(18px);
-    -webkit-backdrop-filter: blur(18px);
 }
 
 .commercial-container {
     border-radius: var(--ai-radius);
     background: var(--ai-surface);
     border: 1px solid var(--ai-line);
-    box-shadow: var(--ai-shadow);
     padding: 12px;
-    transition: background 300ms var(--ai-ease), border-color 300ms var(--ai-ease);
+    transition: border-color 260ms var(--ai-ease);
 }
 
 .commercial-container:hover {
-    background: var(--ai-surface-2);
     border-color: var(--ai-line-strong);
 }
 
@@ -373,7 +365,6 @@ button:focus-visible {
     height: 200px;
     width: 200px;
     background-color: #ffffff;
-    box-shadow: var(--ai-shadow);
     display: flex;
     align-items: center;
     justify-content: center;

@@ -4,9 +4,7 @@ import React, { useState, useEffect } from "react";
 import Link from "next/link";
 import Image from "next/image";
 import "../styles/global.css";
-
-const WORK_WITH_US_URL =
-    "https://www.notion.so/Work-with-us-2f5154c8e1ff806ea5d4c9c5ef8c47ad";
+import { START_HREF } from "@/lib/leadForms";
 
 const NAV_LINKS = [
     { href: "/#work", label: "The Work" },
@@ -56,26 +54,9 @@ export default function DropMenu() {
                         </Link>
                     ))}
 
-                    <a
-                        href={WORK_WITH_US_URL}
-                        target="_blank"
-                        rel="noopener noreferrer"
-                        style={{
-                            display: "inline-flex",
-                            alignItems: "center",
-                            gap: "8px",
-                            padding: "10px 20px",
-                            borderRadius: "999px",
-                            fontWeight: 700,
-                            fontSize: "0.95rem",
-                            textDecoration: "none",
-                            color: "#04121e",
-                            background: "linear-gradient(135deg, #7fe0ff, #38bdf8 45%, #818cf8)",
-                            boxShadow: "0 14px 30px -16px rgba(56,189,248,0.9)",
-                        }}
-                    >
-                        Work With Us
-                    </a>
+                    <Link href={START_HREF} className="nav-cta">
+                        Get started
+                    </Link>
                 </div>
 
                 {/* Mobile toggle */}
@@ -86,9 +67,9 @@ export default function DropMenu() {
                     style={{
                         width: "44px",
                         height: "44px",
-                        borderRadius: "14px",
-                        background: "rgba(255,255,255,0.06)",
-                        border: "1px solid rgba(255,255,255,0.14)",
+                        borderRadius: "var(--ai-radius-btn)",
+                        background: "transparent",
+                        border: "1px solid var(--ai-line-strong)",
                         color: "var(--ai-text)",
                     }}
                     aria-label={isMenuOpen ? "Close main menu" : "Open main menu"}
@@ -122,9 +103,7 @@ export default function DropMenu() {
                         flexDirection: "column",
                         gap: "4px",
                         borderTop: "1px solid var(--ai-line)",
-                        background: "rgba(5,8,15,0.92)",
-                        backdropFilter: "blur(18px)",
-                        WebkitBackdropFilter: "blur(18px)",
+                        background: "rgba(10,18,32,0.97)",
                     }}
                 >
                     {NAV_LINKS.map((link) => (
@@ -136,32 +115,22 @@ export default function DropMenu() {
                                 padding: "14px 4px",
                                 color: "var(--ai-text)",
                                 textDecoration: "none",
-                                fontWeight: 600,
-                                borderBottom: "1px solid rgba(255,255,255,0.06)",
+                                fontWeight: 500,
+                                borderBottom: "1px solid var(--ai-line)",
                             }}
                         >
                             {link.label}
                         </Link>
                     ))}
 
-                    <a
-                        href={WORK_WITH_US_URL}
-                        target="_blank"
-                        rel="noopener noreferrer"
+                    <Link
+                        href={START_HREF}
                         onClick={() => setIsMenuOpen(false)}
-                        style={{
-                            marginTop: "14px",
-                            padding: "14px 20px",
-                            borderRadius: "999px",
-                            textAlign: "center",
-                            fontWeight: 700,
-                            textDecoration: "none",
-                            color: "#04121e",
-                            background: "linear-gradient(135deg, #7fe0ff, #38bdf8 45%, #818cf8)",
-                        }}
+                        className="nav-cta"
+                        style={{ marginTop: "14px", padding: "14px 20px" }}
                     >
-                        Work With Us
-                    </a>
+                        Get started
+                    </Link>
                 </div>
             )}
         </header>

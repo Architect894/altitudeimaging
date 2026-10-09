@@ -1,12 +1,12 @@
 import Head from "next/head";
-import { Inter, Sora } from "next/font/google";
+import { Inter, Inter_Tight } from "next/font/google";
 import "bootstrap/dist/css/bootstrap.min.css";
 import "@/styles/global.css";
 
 // The App Router layout loads these on the homepage. These routes live in the
 // Pages Router, so they need their own copy of the same two families.
 const body = Inter({ subsets: ["latin"], display: "swap" });
-const display = Sora({ subsets: ["latin"], weight: ["600", "700", "800"], display: "swap" });
+const display = Inter_Tight({ subsets: ["latin"], weight: ["600", "700"], display: "swap" });
 
 // --ai-font-* in global.css resolves against :root, so the variables have to be
 // declared there too — a wrapper element would be too deep to be picked up.
