@@ -49,7 +49,7 @@
     --ai-header: 112px;
 
     /* typography (wired up by next/font in layout.jsx) */
-    /* The fallbacks matter: /contact and /videoedits are Pages Router routes and
+    /* The fallbacks matter: /videoedits is a Pages Router route and
        never see next/font's variables, and a bare var() would void the whole rule. */
     --ai-font-body: var(--font-body, ui-sans-serif), system-ui, -apple-system, "Segoe UI", Roboto, sans-serif;
     --ai-font-display: var(--font-display, ui-sans-serif), var(--ai-font-body);
@@ -338,7 +338,7 @@ button:focus-visible {
 }
 
 /* =========================================================
-   Shared helpers still used by /videoedits and /contact
+   Shared helpers still used by /videoedits
    ========================================================= */
 .frostedGlass,
 .custom-bg,

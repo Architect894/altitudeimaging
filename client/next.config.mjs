@@ -20,6 +20,11 @@ const nextConfig = {
         ],
     },
 
+    // The old Pages Router contact page now lives in the homepage's "Start a project" section
+    async redirects() {
+        return [{ source: '/contact', destination: '/#start', permanent: true }];
+    },
+
     // ✅ Keep your SVG loader customization
     webpack(config) {
         config.module.rules.push({

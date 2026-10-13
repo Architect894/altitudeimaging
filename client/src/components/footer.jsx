@@ -4,7 +4,7 @@ import React from "react";
 import Link from "next/link";
 import "bootstrap/dist/css/bootstrap.min.css";
 import "../styles/global.css";
-import { LEAD_FORMS, START_HREF } from "@/lib/leadForms";
+import { LEAD_FORMS, START_HREF, formHref, trackCta } from "@/lib/leadForms";
 
 const SOCIALS = [
     { href: "https://facebook.com/altitudeimagingofficial/", icon: "facebook", label: "Facebook" },
@@ -88,9 +88,10 @@ export default function Footer() {
                             {LEAD_FORMS.map((form) => (
                                 <a
                                     key={form.key}
-                                    href={form.href}
+                                    href={formHref(form, "footer")}
                                     target="_blank"
                                     rel="noopener noreferrer"
+                                    onClick={() => trackCta("footer", form)}
                                     style={linkStyle}
                                 >
                                     {form.label}

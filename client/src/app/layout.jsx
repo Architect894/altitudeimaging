@@ -4,6 +4,9 @@ import '@/styles/global.css';
 import DropMenu from "@/components/dropMenu";
 import Footer from "@/components/footer";
 import AnalyticsWrapper from '@/components/AnalyticsWrapper';
+import { GoogleAnalytics } from "@next/third-parties/google";
+
+const GA_ID = process.env.NEXT_PUBLIC_GA_ID;
 
 // Self-hosted at build time by next/font — no runtime request to Google.
 const body = Inter({
@@ -19,16 +22,24 @@ const display = Inter_Tight({
   variable: "--font-display",
 });
 
+const TITLE = "Aircraft Listing Films for Brokers & Dealers | Altitude Imaging";
+const DESCRIPTION =
+  "By aviators, for aviators. Cinematic listing films and video marketing for aircraft brokers, dealers, makers, and flight schools that sell the aircraft before the first phone call.";
+
 export const metadata = {
-  title: "Altitude Imaging — Aviation Video Marketing",
-  description:
-    "By aviators, for aviators. Video marketing for light sport aircraft makers and dealers, flight schools, and mission organizations that earns trust before the first phone call.",
+  metadataBase: new URL("https://www.altitudeimaging.org"),
+  title: TITLE,
+  description: DESCRIPTION,
+  alternates: { canonical: "/" },
   openGraph: {
-    title: "Altitude Imaging — Aviation Video Marketing",
-    description:
-      "Video marketing for aircraft makers and dealers, flight schools, and mission organizations that earns trust before the first phone call.",
+    title: TITLE,
+    description: DESCRIPTION,
+    url: "/",
+    siteName: "Altitude Imaging",
     type: "website",
+    images: [{ url: "/og-kodiak.jpg", width: 1200, height: 630, alt: "Kodiak 900 on the ramp" }],
   },
+  twitter: { card: "summary_large_image" },
 };
 
 export const viewport = {
@@ -54,6 +65,7 @@ export default function RootLayout({ children }) {
         <Footer />
         <AnalyticsWrapper />
       </body>
+      {GA_ID ? <GoogleAnalytics gaId={GA_ID} /> : null}
     </html>
   );
 }

@@ -1,16 +1,21 @@
 "use client";
 
-import React, { useState, useEffect, useRef } from "react";
+import React, { useState, useEffect } from "react";
 import Image from "next/image";
 import "bootstrap/dist/css/bootstrap.min.css";
 import "../styles/global.css";
 import styles from "../styles/styles.module.css";
-import { LEAD_FORMS, leadForm } from "@/lib/leadForms";
+import { LEAD_FORMS, leadForm, formHref, trackCta } from "@/lib/leadForms";
 
 const YT_CHANNEL_URL = "https://www.youtube.com/@PastorPilot";
 const GOOGLE_REVIEWS_URL =
     "https://www.google.com/search?q=Altitude+Imaging+Reviews";
-const REEL_VIDEO_URL = "https://altitudeimagingvideos.b-cdn.net/LOOP%202.m4v";
+// 15-second, 1080p cut of LOOP 2 — the full-length original is ~126 MB
+const HERO_LOOP_URL = "/hero-loop-1080.mp4";
+const HERO_POSTER = "/hero-poster.jpg";
+// The full sales film is ~51 MB, so nothing is fetched until a visitor presses play
+const SALES_FILM_URL = "https://altitudeimagingvideos.b-cdn.net/SALES%20VID.mov";
+const SALES_FILM_POSTER = "/sales-film-poster.jpg";
 
 // Placeholder cards rendered while the top-videos request is in flight
 const YT_SKELETONS = [0, 1, 2];
@@ -44,6 +49,7 @@ const BEATS = [
 // The audiences listed mid-page; "Anything else" only appears in the chooser
 const AUDIENCES = LEAD_FORMS.filter((form) => form.key !== "other");
 const PASTOR_PILOT_FORM = leadForm("pastor-pilot");
+const HERO_FORM = leadForm("makers");
 
 const CLIENT_LOGOS = [
     { src: "https://altitudeimagingvideos.b-cdn.net/habitatwhite.png", alt: "Habitat Land" },
@@ -102,10 +108,8 @@ export default function Home() {
     // for reduced motion. Until then (and for them) the shaded panel stands alone.
     const [heroMotion, setHeroMotion] = useState(false);
 
-    // The showreel sits well below the fold, so its source is only attached
-    // once the visitor scrolls near it.
-    const reelRef = useRef(null);
-    const [reelReady, setReelReady] = useState(false);
+    // The sales film stays a poster until it is clicked
+    const [filmPlaying, setFilmPlaying] = useState(false);
 
     useEffect(() => {
         const query = window.matchMedia("(prefers-reduced-motion: reduce)");
@@ -142,29 +146,6 @@ export default function Home() {
     }, [videosLoading]);
 
     useEffect(() => {
-        const node = reelRef.current;
-        if (!node) return;
-
-        if (typeof IntersectionObserver === "undefined") {
-            setReelReady(true);
-            return;
-        }
-
-        const observer = new IntersectionObserver(
-            (entries) => {
-                if (entries.some((entry) => entry.isIntersecting)) {
-                    setReelReady(true);
-                    observer.disconnect();
-                }
-            },
-            { rootMargin: "400px 0px" }
-        );
-
-        observer.observe(node);
-        return () => observer.disconnect();
-    }, []);
-
-    useEffect(() => {
         let cancelled = false;
 
         fetch("/api/youtube/top")
@@ -196,11 +177,14 @@ export default function Home() {
                             loop
                             muted
                             playsInline
-                            preload="metadata"
+                            preload="none"
+                            poster={HERO_POSTER}
                         >
-                            <source src={REEL_VIDEO_URL} type="video/mp4" />
+                            <source src={HERO_LOOP_URL} type="video/mp4" />
                         </video>
-                    ) : null}
+                    ) : (
+                        <img className={styles.heroVideo} src={HERO_POSTER} alt="" />
+                    )}
                     <div className={styles.heroShade} />
                 </div>
 
@@ -212,23 +196,29 @@ export default function Home() {
                                 By aviators, for aviators
                             </p>
 
-                            <h1 className={styles.heroTitle} data-reveal style={{ "--reveal-delay": "80ms" }}>
-                                Aviation buyers decide{" "}
+                            {/* No reveal on the headline — it is the LCP element, so it paints immediately */}
+                            <h1 className={styles.heroTitle}>
+                                Aircraft listing films{" "}
                                 <span className={styles.heroTitleAccent}>
-                                    long before they call you.
+                                    that sell before the first call.
                                 </span>
                             </h1>
 
                             <p className={styles.heroLead} data-reveal style={{ "--reveal-delay": "160ms" }}>
-                                Flight schools, aircraft makers, and dealers lose most sales in the weeks
-                                a prospect spends researching alone.{" "}
+                                Brokers and dealers lose buyers in the weeks a prospect spends
+                                researching alone.{" "}
                                 <span className={styles.heroLeadStrong}>
-                                    We make the video that does the convincing during those weeks.
+                                    We make the film that does the convincing during those weeks.
                                 </span>
                             </p>
 
                             <div className={styles.heroActions} data-reveal style={{ "--reveal-delay": "240ms" }}>
-                                <a href="#start" className={styles.btnPrimary}>
+                                <a
+                                    href={formHref(HERO_FORM, "hero", "broker")}
+                                    {...external}
+                                    onClick={() => trackCta("hero", HERO_FORM)}
+                                    className={styles.btnPrimary}
+                                >
                                     Get started
                                     <span className={styles.btnArrow} aria-hidden="true">→</span>
                                 </a>
@@ -317,7 +307,12 @@ export default function Home() {
                             <ul className={styles.helpList}>
                                 {AUDIENCES.map((form) => (
                                     <li key={form.key}>
-                                        <a href={form.href} {...external} className={styles.helpLink}>
+                                        <a
+                                            href={formHref(form, "audiences")}
+                                            {...external}
+                                            onClick={() => trackCta("audiences", form)}
+                                            className={styles.helpLink}
+                                        >
                                             {form.label}
                                             <span className={styles.rowArrow} aria-hidden="true">→</span>
                                         </a>
@@ -373,28 +368,46 @@ export default function Home() {
                         </p>
                     </div>
 
-                    {/* Caption sits over the frame on desktop and drops below it on phones */}
+                    {/* Caption sits over the poster on desktop and drops below it on phones.
+                        Once the film is playing the caption steps aside for the controls. */}
                     <div className={styles.reelBlock} data-reveal>
-                        <div className={styles.reelFrame} ref={reelRef}>
-                            <video
-                                className={styles.reelVideo}
-                                autoPlay
-                                loop
-                                muted
-                                playsInline
-                                preload="none"
-                            >
-                                {reelReady ? <source src={REEL_VIDEO_URL} type="video/mp4" /> : null}
-                                Your browser does not support the video tag.
-                            </video>
-
-                            <div className={styles.reelShade} aria-hidden="true" />
+                        <div className={styles.reelFrame}>
+                            {filmPlaying ? (
+                                <video
+                                    className={styles.reelVideo}
+                                    src={SALES_FILM_URL}
+                                    poster={SALES_FILM_POSTER}
+                                    autoPlay
+                                    controls
+                                    playsInline
+                                >
+                                    Your browser does not support the video tag.
+                                </video>
+                            ) : (
+                                <button
+                                    type="button"
+                                    className={styles.ytThumbButton}
+                                    onClick={() => setFilmPlaying(true)}
+                                    aria-label="Play the Altitude Imaging sales film"
+                                >
+                                    <img
+                                        className={styles.reelVideo}
+                                        src={SALES_FILM_POSTER}
+                                        alt=""
+                                        loading="lazy"
+                                    />
+                                    <span className={styles.reelShade} aria-hidden="true" />
+                                    <span className={styles.ytPlay} aria-hidden="true" />
+                                </button>
+                            )}
                         </div>
 
-                        <div className={styles.reelCaption}>
-                            <p className={styles.reelTitle}>Cinematic aerial and on-ground production</p>
-                            <p className={styles.reelSub}>Shot, edited, and delivered ready to run.</p>
-                        </div>
+                        {filmPlaying ? null : (
+                            <div className={styles.reelCaption}>
+                                <p className={styles.reelTitle}>Cinematic aerial and on-ground production</p>
+                                <p className={styles.reelSub}>Shot, edited, and delivered ready to run.</p>
+                            </div>
+                        )}
                     </div>
                 </div>
             </section>
@@ -431,7 +444,12 @@ export default function Home() {
                                 </span>
                                 <span className={styles.ytLabel}>Watch on YouTube</span>
                             </a>
-                            <a href={PASTOR_PILOT_FORM.href} {...external} className={styles.btnPrimary}>
+                            <a
+                                href={formHref(PASTOR_PILOT_FORM, "channel")}
+                                {...external}
+                                onClick={() => trackCta("channel", PASTOR_PILOT_FORM)}
+                                className={styles.btnPrimary}
+                            >
                                 Partner with Pastor Pilot
                                 <span className={styles.btnArrow} aria-hidden="true">→</span>
                             </a>
@@ -585,7 +603,12 @@ export default function Home() {
                         <ul className={styles.startList} data-reveal style={{ "--reveal-delay": "120ms" }}>
                             {LEAD_FORMS.map((form) => (
                                 <li key={form.key}>
-                                    <a href={form.href} {...external} className={styles.startRow}>
+                                    <a
+                                        href={formHref(form, "start")}
+                                        {...external}
+                                        onClick={() => trackCta("start", form)}
+                                        className={styles.startRow}
+                                    >
                                         <span>
                                             <span className={styles.startLabel}>{form.label}</span>
                                             <span className={styles.startBlurb}>{form.blurb}</span>

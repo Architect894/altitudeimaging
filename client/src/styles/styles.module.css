@@ -326,9 +326,9 @@
 }
 
 @media (max-width: 992px) {
-    /* Single column, and the copy block dissolves so the pain panel can be
-       reordered to sit directly under the headline — the coach's note was that
-       the pain points come first, which has to hold on a phone too. */
+    /* Single column, and the copy block dissolves so its pieces can be
+       reordered: headline and lead, then the CTA, then the pain panel, so the
+       button is reachable without scrolling past the "Where sales stall" card. */
     .hero {
         min-height: 0;
     }
@@ -355,18 +355,18 @@
         margin-bottom: 20px;
     }
 
-    .painPanel {
-        order: 3;
-        margin-bottom: 28px;
-    }
-
     .heroLead {
-        order: 4;
+        order: 3;
         font-size: 1.02rem;
         margin-bottom: 26px;
     }
 
     .heroActions {
+        order: 4;
+        margin-bottom: 28px;
+    }
+
+    .painPanel {
         order: 5;
         margin-bottom: 26px;
     }
@@ -1100,7 +1100,7 @@
 }
 
 /* =========================================================
-   Shared with /videoedits and /contact
+   Shared with /videoedits
    ========================================================= */
 .videoBackground {
     position: absolute;
